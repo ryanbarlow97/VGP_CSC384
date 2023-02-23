@@ -11,9 +11,12 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [Header("Button Hover Text:")] 
     [SerializeField] private TMPro.TextMeshProUGUI originalText;
 
+    [Header("Button Hover Sound:")] 
+    [SerializeField] private AudioSource hoverSound;
     public void OnPointerEnter(PointerEventData eventData)
     {
         originalText.color = Color.white;
+        hoverSound.Play();
 
     }
         public void OnPointerExit(PointerEventData eventData)
