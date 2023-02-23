@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 
-public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class MainMenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
 
 
@@ -12,16 +12,21 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [SerializeField] private TMPro.TextMeshProUGUI originalText;
 
     [Header("Button Hover Sound:")] 
-    [SerializeField] private AudioSource hoverSound;
+    [SerializeField] private AudioSource buttonSound;
+    [SerializeField] private AudioClip clickSound;
+
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         originalText.color = Color.white;
-        hoverSound.Play();
-
     }
         public void OnPointerExit(PointerEventData eventData)
     {
         originalText.color = new Color32(255, 255, 255, 150);
+    }
 
+        public void ClickSound()
+    {
+        buttonSound.PlayOneShot(clickSound);
     }
 }
