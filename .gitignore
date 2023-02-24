@@ -68,3 +68,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 
 [Aa]ssets/TextMesh*Pro/
+
+VGP_CSC324_Data/
+VGP_CSC384_BurstDebugInformation_DoNotShip/
