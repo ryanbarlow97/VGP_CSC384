@@ -9,13 +9,19 @@ public class OptionsButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     [Header("Button Hover Text:")] 
     [SerializeField] private TMPro.TextMeshProUGUI originalText;
 
+    private Color originalColor;
+
+    private void Start()
+    {
+        originalColor = originalText.color;
+    }
     public void OnPointerEnter(PointerEventData eventData)
     {
         originalText.color = Color.white;
     }
         public void OnPointerExit(PointerEventData eventData)
     {
-        originalText.color = new Color32(255, 255, 255, 150);
+        originalText.color = originalColor;
     }
 
     public void Back() 

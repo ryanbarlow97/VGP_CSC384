@@ -7,12 +7,16 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    private Color originalColor;
 
 
     [Header("Button Hover Text:")] 
     [SerializeField] private TMPro.TextMeshProUGUI originalText;
 
-
+    private void Start()
+    {
+        originalColor = originalText.color;
+    }
 
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -21,7 +25,7 @@ public class MainMenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
     }
         public void OnPointerExit(PointerEventData eventData)
     {
-        originalText.color = new Color32(255, 255, 255, 150);
+        originalText.color = originalColor;
     }
 
     public void Play() 
