@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 
 public class MainMenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -11,9 +12,7 @@ public class MainMenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [Header("Button Hover Text:")] 
     [SerializeField] private TMPro.TextMeshProUGUI originalText;
 
-    [Header("Button Hover Sound:")] 
-    [SerializeField] private AudioSource buttonSound;
-    [SerializeField] private AudioClip clickSound;
+
 
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -25,8 +24,24 @@ public class MainMenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
         originalText.color = new Color32(255, 255, 255, 150);
     }
 
-        public void ClickSound()
+    public void Play() 
     {
-        buttonSound.PlayOneShot(clickSound);
+
     }
+
+    public void Leaderboards() 
+    {
+        SceneManager.LoadScene("Leaderboard");
+    }
+
+    public void Options() 
+    {
+        SceneManager.LoadScene("Options");
+    }
+
+    public void Quit() 
+    {
+        Application.Quit();
+    }
+
 }
