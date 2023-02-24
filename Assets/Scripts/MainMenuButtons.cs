@@ -35,7 +35,7 @@ public class MainMenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void Leaderboards() 
     {
-        SceneManager.LoadScene("Leaderboard");
+        SceneManager.LoadScene("Leaderboards");
     }
 
     public void Options() 
