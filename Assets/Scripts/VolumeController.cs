@@ -2,18 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class VolumeController : MonoBehaviour
 {
     private const string VOLUME_KEY = "Volume";
 
     public AudioMixer audioMixer;
+    public Slider slider;
 
     private void Start()
     {
         // Load the last volume value from PlayerPrefs
         float volume = PlayerPrefs.GetFloat(VOLUME_KEY, 1f);
         SetVolume(volume);
+
+        // Set the position of the slider to the loaded volume value
+        slider.value = volume;
     }
 
     public void SetVolume(float volume)
