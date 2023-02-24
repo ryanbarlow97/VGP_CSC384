@@ -69,14 +69,5 @@ crashlytics-build.properties
 
 [Aa]ssets/TextMesh*Pro/
 
-VGP_CSC324_Data/
+VGP_CSC384_Data/
 VGP_CSC384_BurstDebugInformation_DoNotShip/
-VGP_CSC384_Data/*
-VGP_CSC384_BurstDebugInformation_DoNotShip/*
-VGP_CSC384_Data/Managed/*
-VGP_CSC384_Data/Plugins/*
-VGP_CSC384_Data/Plugins/x86_64/lib_burst_generated.dll
-VGP_CSC384_Data/Managed/Assembly-CSharp.dll
-VGP_CSC384_Data/level2
-VGP_CSC384_Data/globalgamemanagers.assets
-VGP_CSC384_Data/globalgamemanagers
