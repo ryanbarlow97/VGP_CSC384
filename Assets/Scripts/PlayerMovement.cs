@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
     public GameObject leftBooster;
     public GameObject mainBooster;
 
+    public AudioSource audioSource;
+    public AudioClip thrustSound;
+
     void Start()
     {
         Camera camera = Camera.main;
@@ -60,10 +63,17 @@ public class PlayerMovement : MonoBehaviour
         if (previousPosition != transform.position)
         {
             mainBooster.SetActive(true);
+
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = thrustSound;
+                audioSource.Play();
+            }
         }
         else
         {
             mainBooster.SetActive(false);
+            audioSource.Stop();
         }
     }
 
