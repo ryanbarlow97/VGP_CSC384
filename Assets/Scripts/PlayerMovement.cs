@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
             leftBooster.SetActive(false);
         }
 
-        if (previousPosition != (Vector2)transform.position)
+        if (previousPosition != (Vector2)transform.position && vertical > 0)
         {
             mainBooster.SetActive(true);
 
