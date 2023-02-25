@@ -6,19 +6,13 @@ using UnityEngine.UI;
 
 public class VolumeController : MonoBehaviour
 {
-    private const string VOLUME_KEY = "Volume";
-
     public AudioMixer audioMixer;
     public Slider slider;
 
     private void Start()
     {
-        // Load the last volume value from PlayerPrefs
-        float volume = PlayerPrefs.GetFloat(VOLUME_KEY, 1f);
-        SetVolume(volume);
-
         // Set the position of the slider to the loaded volume value
-        slider.value = volume;
+        slider.value = VolumeManager.GetSavedVolumePreference();
     }
 
     public void SetVolume(float volume)
@@ -36,7 +30,7 @@ public class VolumeController : MonoBehaviour
         audioMixer.SetFloat("MasterVolume", db);
 
         // Store the volume value in PlayerPrefs
-        PlayerPrefs.SetFloat(VOLUME_KEY, volume);
-        PlayerPrefs.Save();
+        VolumeManager.volume = volume;
+        VolumeManager.SaveVolumePreference();
     }
 }
