@@ -160,8 +160,8 @@ MonoBehaviour:
   mainBooster: {fileID: 700185487}
   audioSource: {fileID: 1272546616}
   thrustSound: {fileID: 8300000, guid: 62b0820803adb7b4fa0cda054a593d03, type: 3}
-  acceleration: 5
-  maxSpeed: 7
+  acceleration: 1
+  maxSpeed: 4
   rotationSpeed: 200
 --- !u!212 &330402270
 SpriteRenderer:
