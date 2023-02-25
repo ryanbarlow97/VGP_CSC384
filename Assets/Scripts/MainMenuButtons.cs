@@ -30,7 +30,7 @@ public class MainMenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void Play() 
     {
-
+        SceneManager.LoadScene("MainGame");
     }
 
     public void Leaderboards() 
