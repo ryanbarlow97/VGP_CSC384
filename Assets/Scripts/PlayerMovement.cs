@@ -24,23 +24,9 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         float horizontal = Input.GetAxis("Horizontal");
-
-        transform.Rotate(0, 0, -horizontal * speed * Time.deltaTime * 25);
-
-        if (horizontal < 0)
-        {
-            rightBooster.SetActive(true);
-            leftBooster.SetActive(false);
-            mainBooster.SetActive(false);
-        }
-        else if (horizontal > 0)
-        {
-            rightBooster.SetActive(false);
-            leftBooster.SetActive(true);
-            mainBooster.SetActive(false);
-        }
-
         float vertical = Input.GetAxis("Vertical");
+
+        Vector3 previousPosition = transform.position;
 
         if (vertical > 0)
         {
@@ -49,10 +35,35 @@ public class PlayerMovement : MonoBehaviour
             newPosition.y = WrapValue(newPosition.y, -screenHeight, screenHeight);
 
             transform.position = newPosition;
+        }
+
+        if (horizontal < 0)
+        {
+            transform.Rotate(0, 0, -horizontal * speed * Time.deltaTime * 25);
+
+            rightBooster.SetActive(true);
+            leftBooster.SetActive(false);
+        }
+        else if (horizontal > 0)
+        {
+            transform.Rotate(0, 0, -horizontal * speed * Time.deltaTime * 25);
 
             rightBooster.SetActive(false);
+            leftBooster.SetActive(true);
+        }
+        else
+        {
+            rightBooster.SetActive(false);
             leftBooster.SetActive(false);
+        }
+
+        if (previousPosition != transform.position)
+        {
             mainBooster.SetActive(true);
+        }
+        else
+        {
+            mainBooster.SetActive(false);
         }
     }
 
