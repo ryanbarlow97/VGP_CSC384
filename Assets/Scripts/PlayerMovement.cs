@@ -118,11 +118,11 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip thrustSound;
 
     private Rigidbody2D rb;
+    public Camera camera;
     public float acceleration;
     public float maxSpeed;
     public float rotationSpeed;
-    public GameObject background;
-    public float backgroundSpeed = 0.1f;
+    public float cameraSpeed = 0.1f;
 
     private ICommand rotateCommand;
     private ICommand activateMainBoosterCommand;
@@ -135,7 +135,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        Camera camera = Camera.main;
         float cameraWidth = camera.orthographicSize * camera.aspect;
         screenWidth = cameraWidth;
         screenHeight = camera.orthographicSize;
@@ -152,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
         playThrustSoundCommand = new PlaySoundCommand(audioSource, thrustSound);
 
     }
-    void Update()
+    void FixedUpdate()
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -168,8 +167,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Vector2 newPosition = (Vector2)transform.position + (Vector2)rb.velocity * Time.deltaTime;
-        newPosition.x = WrapValue(newPosition.x, -screenWidth, screenWidth);
-        newPosition.y = WrapValue(newPosition.y, -screenHeight, screenHeight);
+
+        newPosition.x = WrapValue(newPosition.x, -screenWidth+camera.transform.position.x, screenWidth+camera.transform.position.x);
+        newPosition.y = WrapValue(newPosition.y, -screenHeight+camera.transform.position.y, screenHeight+camera.transform.position.y);
+
         transform.position = newPosition;
 
         if (horizontal < 0)
@@ -202,17 +203,13 @@ public class PlayerMovement : MonoBehaviour
         {
             deactivateMainBoosterCommand.Execute();
         }
-        Vector3 velocity = rb.velocity * backgroundSpeed;
-        Vector3 newBackgroundPosition = background.transform.position + velocity * Time.deltaTime;
+        Vector3 velocity = rb.velocity * cameraSpeed;
+        Vector3 newCameraPosition = Camera.main.transform.position + velocity * Time.deltaTime;
 
-        newBackgroundPosition.x = Mathf.Clamp(newBackgroundPosition.x, -14, 14);
-        newBackgroundPosition.y = Mathf.Clamp(newBackgroundPosition.y, -10, 10);
-        newBackgroundPosition.z = 20;
-        background.transform.position = newBackgroundPosition;
-
+        newCameraPosition.z = -20;
+        Camera.main.transform.position = newCameraPosition;
     }
-
-
+    
     float WrapValue(float value, float min, float max)
     {
         float range = max - min;
