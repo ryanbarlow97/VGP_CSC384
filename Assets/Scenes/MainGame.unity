@@ -380,6 +380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 638829303}
   - component: {fileID: 638829304}
+  - component: {fileID: 638829305}
   m_Layer: 0
   m_Name: boosterMain
   m_TagString: Untagged
@@ -454,6 +455,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &638829305
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638829302}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: df28158181abae345ba1d00c2be9fa58, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &677623331
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,6 +654,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1060223916}
   - component: {fileID: 1060223915}
+  - component: {fileID: 1060223917}
   m_Layer: 0
   m_Name: boosterRight
   m_TagString: Untagged
@@ -707,6 +729,26 @@ Transform:
   m_Father: {fileID: 330402272}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1060223917
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060223914}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dec0a868627ce7f43b266d2cbbb997ed, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1272546615
 GameObject:
   m_ObjectHideFlags: 0
@@ -1115,6 +1157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1809298845}
   - component: {fileID: 1809298844}
+  - component: {fileID: 1809298846}
   m_Layer: 0
   m_Name: boosterLeft
   m_TagString: Untagged
@@ -1189,6 +1232,26 @@ Transform:
   m_Father: {fileID: 330402272}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1809298846
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809298843}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a54b5cf506520f34a846124ce9aa94a1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1913275421
 GameObject:
   m_ObjectHideFlags: 0
