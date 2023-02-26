@@ -89,8 +89,8 @@ public class PlayerMovement : MonoBehaviour
         Vector2 velocity = rb.velocity * backgroundSpeed;
         Vector2 newBackgroundPosition = (Vector2)background.transform.position + velocity * Time.deltaTime;
 
-        newBackgroundPosition.x = Mathf.Clamp(newBackgroundPosition.x, -4, 4);
-        newBackgroundPosition.y = Mathf.Clamp(newBackgroundPosition.y, -4, 4);
+        newBackgroundPosition.x = Mathf.Clamp(newBackgroundPosition.x, -14, 14);
+        newBackgroundPosition.y = Mathf.Clamp(newBackgroundPosition.y, -10, 10);
 
         background.transform.position = newBackgroundPosition;
     }
