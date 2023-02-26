@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     public float acceleration;
     public float maxSpeed;
     public float rotationSpeed;
+    public GameObject background;
+    public float backgroundSpeed = 0.1f;
 
     void Start()
     {
@@ -27,8 +29,8 @@ public class PlayerMovement : MonoBehaviour
         screenHeight = camera.orthographicSize;
 
         rb = GetComponent<Rigidbody2D>();
-    }
 
+    }
     void Update()
     {
         float horizontal = Input.GetAxis("Horizontal");
@@ -83,6 +85,14 @@ public class PlayerMovement : MonoBehaviour
             mainBooster.SetActive(false);
             audioSource.Stop();
         }
+
+        Vector2 velocity = rb.velocity * backgroundSpeed;
+        Vector2 newBackgroundPosition = (Vector2)background.transform.position + velocity * Time.deltaTime;
+
+        newBackgroundPosition.x = Mathf.Clamp(newBackgroundPosition.x, -4, 4);
+        newBackgroundPosition.y = Mathf.Clamp(newBackgroundPosition.y, -4, 4);
+
+        background.transform.position = newBackgroundPosition;
     }
 
 
