@@ -1,6 +1,109 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+// Command interface
+public interface ICommand
+{
+    void Execute();
+}
+
+// Move command
+public class MoveCommand : ICommand
+{
+    private Rigidbody2D rb;
+    private float acceleration;
+    private float maxSpeed;
+    private float vertical;
+
+    public MoveCommand(Rigidbody2D rb, float acceleration, float maxSpeed, float vertical)
+    {
+        this.rb = rb;
+        this.acceleration = acceleration;
+        this.maxSpeed = maxSpeed;
+        this.vertical = vertical;
+    }
+
+    public void Execute()
+    {
+        Vector2 direction = rb.transform.up;
+        rb.velocity += direction * acceleration * Time.deltaTime;
+        rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
+    }
+}
+
+// Rotate command
+public class RotateCommand : ICommand
+{
+    private Transform transform;
+    private float rotationSpeed;
+    private float horizontal;
+
+    public RotateCommand(Transform transform, float rotationSpeed, float horizontal)
+    {
+        this.transform = transform;
+        this.rotationSpeed = rotationSpeed;
+        this.horizontal = horizontal;
+    }
+
+    public void Execute()
+    {
+        transform.Rotate(0, 0, -horizontal * rotationSpeed * Time.deltaTime);
+    }
+}
+
+// Activate booster command
+public class ActivateBoosterCommand : ICommand
+{
+    private GameObject booster;
+
+    public ActivateBoosterCommand(GameObject booster)
+    {
+        this.booster = booster;
+    }
+
+    public void Execute()
+    {
+        booster.SetActive(true);
+    }
+}
+
+// Deactivate booster command
+public class DeactivateBoosterCommand : ICommand
+{
+    private GameObject booster;
+
+    public DeactivateBoosterCommand(GameObject booster)
+    {
+        this.booster = booster;
+    }
+
+    public void Execute()
+    {
+        booster.SetActive(false);
+    }
+}
+
+// Play sound command
+public class PlaySoundCommand : ICommand
+{
+    private AudioSource audioSource;
+    private AudioClip sound;
+
+    public PlaySoundCommand(AudioSource audioSource, AudioClip sound)
+    {
+        this.audioSource = audioSource;
+        this.sound = sound;
+    }
+
+    public void Execute()
+    {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.clip = sound;
+            audioSource.Play();
+        }
+    }
+}
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -21,6 +124,15 @@ public class PlayerMovement : MonoBehaviour
     public GameObject background;
     public float backgroundSpeed = 0.1f;
 
+    private ICommand rotateCommand;
+    private ICommand activateMainBoosterCommand;
+    private ICommand activateLeftBoosterCommand;
+    private ICommand activateRightBoosterCommand;
+    private ICommand deactivateMainBoosterCommand;
+    private ICommand deactivateLeftBoosterCommand;
+    private ICommand deactivateRightBoosterCommand;
+    private ICommand playThrustSoundCommand;
+
     void Start()
     {
         Camera camera = Camera.main;
@@ -30,6 +142,15 @@ public class PlayerMovement : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
 
+
+        activateLeftBoosterCommand = new ActivateBoosterCommand(leftBooster);
+        activateRightBoosterCommand = new ActivateBoosterCommand(rightBooster);
+        activateMainBoosterCommand = new ActivateBoosterCommand(mainBooster);
+        deactivateLeftBoosterCommand = new DeactivateBoosterCommand(leftBooster);
+        deactivateRightBoosterCommand = new DeactivateBoosterCommand(rightBooster);
+        deactivateMainBoosterCommand = new DeactivateBoosterCommand(mainBooster);
+        playThrustSoundCommand = new PlaySoundCommand(audioSource, thrustSound);
+
     }
     void Update()
     {
@@ -37,6 +158,7 @@ public class PlayerMovement : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
         Vector2 previousPosition = transform.position;
 
+        rotateCommand = new RotateCommand(transform, rotationSpeed, horizontal);
 
         if (vertical > 0)
         {
@@ -52,47 +174,42 @@ public class PlayerMovement : MonoBehaviour
 
         if (horizontal < 0)
         {
-            transform.Rotate(0, 0, -horizontal * rotationSpeed * Time.deltaTime);
+            rotateCommand.Execute();
+            activateRightBoosterCommand.Execute();
+            deactivateLeftBoosterCommand.Execute();
+            
 
-            rightBooster.SetActive(true);
-            leftBooster.SetActive(false);
         }
         else if (horizontal > 0)
         {
-            transform.Rotate(0, 0, -horizontal * rotationSpeed * Time.deltaTime);
-
-            rightBooster.SetActive(false);
-            leftBooster.SetActive(true);
+            rotateCommand.Execute();
+            deactivateRightBoosterCommand.Execute();
+            activateLeftBoosterCommand.Execute();
         }
         else
         {
-            rightBooster.SetActive(false);
-            leftBooster.SetActive(false);
+            deactivateRightBoosterCommand.Execute();
+            deactivateLeftBoosterCommand.Execute();
         }
 
         if (previousPosition != (Vector2)transform.position && vertical > 0)
         {
-            mainBooster.SetActive(true);
+            activateMainBoosterCommand.Execute();
 
-            if (!audioSource.isPlaying)
-            {
-                audioSource.clip = thrustSound;
-                audioSource.Play();
-            }
+            playThrustSoundCommand.Execute();
         }
         else
         {
-            mainBooster.SetActive(false);
-            audioSource.Stop();
+            deactivateMainBoosterCommand.Execute();
         }
-
-        Vector2 velocity = rb.velocity * backgroundSpeed;
-        Vector2 newBackgroundPosition = (Vector2)background.transform.position + velocity * Time.deltaTime;
+        Vector3 velocity = rb.velocity * backgroundSpeed;
+        Vector3 newBackgroundPosition = background.transform.position + velocity * Time.deltaTime;
 
         newBackgroundPosition.x = Mathf.Clamp(newBackgroundPosition.x, -14, 14);
         newBackgroundPosition.y = Mathf.Clamp(newBackgroundPosition.y, -10, 10);
-
+        newBackgroundPosition.z = 20;
         background.transform.position = newBackgroundPosition;
+
     }
 
 
