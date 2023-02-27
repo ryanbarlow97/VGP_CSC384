@@ -151,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
         playThrustSoundCommand = new PlaySoundCommand(audioSource, thrustSound);
 
     }
-    void FixedUpdate()
+    void Update()
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
