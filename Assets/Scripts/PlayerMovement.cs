@@ -118,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip thrustSound;
 
     private Rigidbody2D rb;
-    public Camera camera;
+    public new Camera camera;
     public float acceleration;
     public float maxSpeed;
     public float rotationSpeed;

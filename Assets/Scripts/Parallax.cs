@@ -8,6 +8,7 @@ public class Parallax : MonoBehaviour
     public Camera cam;
     public float parallaxEffectX;
     public float parallaxEffectY;
+    private Vector3 startPosition;
 
     void Start()
     {
