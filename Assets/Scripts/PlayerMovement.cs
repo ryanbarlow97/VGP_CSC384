@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// Command interface
+
 public interface ICommand
 {
     void Execute();
@@ -118,11 +118,11 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip thrustSound;
 
     private Rigidbody2D rb;
-    public new Camera camera;
+    public Camera newCamera;
     public float acceleration;
     public float maxSpeed;
     public float rotationSpeed;
-    public float cameraSpeed = 0.1f;
+    public float cameraSpeed;
 
     private ICommand rotateCommand;
     private ICommand activateMainBoosterCommand;
@@ -135,9 +135,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        float cameraWidth = camera.orthographicSize * camera.aspect;
+        float cameraWidth = newCamera.orthographicSize * newCamera.aspect;
         screenWidth = cameraWidth;
-        screenHeight = camera.orthographicSize;
+        screenHeight = newCamera.orthographicSize;
 
         rb = GetComponent<Rigidbody2D>();
 
@@ -168,8 +168,13 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 newPosition = (Vector2)transform.position + (Vector2)rb.velocity * Time.deltaTime;
 
-        newPosition.x = WrapValue(newPosition.x, -screenWidth+camera.transform.position.x, screenWidth+camera.transform.position.x);
-        newPosition.y = WrapValue(newPosition.y, -screenHeight+camera.transform.position.y, screenHeight+camera.transform.position.y);
+        newPosition.x = WrapValue(newPosition.x, 
+            -screenWidth+newCamera.transform.position.x, 
+            screenWidth+newCamera.transform.position.x);
+
+        newPosition.y = WrapValue(newPosition.y, 
+            -screenHeight+newCamera.transform.position.y, 
+            screenHeight+newCamera.transform.position.y);
 
         transform.position = newPosition;
 
@@ -204,10 +209,11 @@ public class PlayerMovement : MonoBehaviour
             deactivateMainBoosterCommand.Execute();
         }
         Vector3 velocity = rb.velocity * cameraSpeed;
-        Vector3 newCameraPosition = Camera.main.transform.position + velocity * Time.deltaTime;
+        Vector3 newCameraPosition = newCamera.transform.position
+                                        + velocity * Time.deltaTime;
 
         newCameraPosition.z = -20;
-        Camera.main.transform.position = newCameraPosition;
+        newCamera.transform.position = newCameraPosition;
     }
     
     float WrapValue(float value, float min, float max)
