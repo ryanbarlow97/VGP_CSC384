@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1518173071255710688}
   - component: {fileID: 8825108997267477574}
   - component: {fileID: 8447897956436992410}
+  - component: {fileID: -943238245982239828}
   m_Layer: 0
   m_Name: Metorite
   m_TagString: Untagged
@@ -120,3 +121,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+--- !u!114 &-943238245982239828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2952009545824456217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c85be4f002ebb54a9d9d36d0eecba82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: 2
