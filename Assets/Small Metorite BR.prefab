@@ -13,10 +13,8 @@ GameObject:
   - component: {fileID: 8825108997267477574}
   - component: {fileID: 8447897956436992410}
   - component: {fileID: -943238245982239828}
-  - component: {fileID: -927634329648992115}
-  - component: {fileID: 786563285610771850}
   m_Layer: 0
-  m_Name: Metorite
+  m_Name: Small Metorite BR
   m_TagString: MeteorLarge
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 943907968, guid: 2cd20705c8b93cf4d91f7b9e5f8a0bab, type: 3}
+  m_Sprite: {fileID: -1550357630, guid: 2cd20705c8b93cf4d91f7b9e5f8a0bab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -123,11 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  smallMeteorPrefabs:
-  - {fileID: 2952009545824456217, guid: c216129a482d3bd48a6c0ece30edbbc6, type: 3}
-  - {fileID: 2952009545824456217, guid: 56d18ba642e8a3c47b800e0f4b5cf864, type: 3}
-  - {fileID: 2952009545824456217, guid: 5589ee4fe8e52b145908bbf361f96606, type: 3}
-  - {fileID: 2952009545824456217, guid: e0b09b519217b2e4cbad6e1e1fae8399, type: 3}
+  smallMeteorPrefabs: []
 --- !u!114 &-943238245982239828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,42 +135,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 5
---- !u!114 &-927634329648992115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2952009545824456217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4f72d0aa9a53df4c9733cac2223423a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 2970903987807029702, guid: c1dbd9c1b23bb1e40ae01fb921ea866d, type: 3}
---- !u!61 &786563285610771850
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2952009545824456217}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.58, y: 0.61}
-    newSize: {x: 0.58, y: 0.61}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.58, y: 0.61}
-  m_EdgeRadius: 0
