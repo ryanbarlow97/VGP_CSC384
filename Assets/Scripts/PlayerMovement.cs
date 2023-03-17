@@ -212,7 +212,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 newCameraPosition = newCamera.transform.position
                                         + velocity * Time.deltaTime;
 
-        newCameraPosition.z = -20;
+
         newCamera.transform.position = newCameraPosition;
     }
     
