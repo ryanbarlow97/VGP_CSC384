@@ -25,21 +25,22 @@ public class MeteorMovement : MonoBehaviour
     {
         if (smallMeteorPrefabs != null && smallMeteorPrefabs.Length == 4)
         {
-            Vector2[] directions = {
-                new Vector2(-1, 1).normalized,    // Top left
-                new Vector2(1, 1).normalized,     // Top right
-                new Vector2(-1, -1).normalized,   // Bottom left
-                new Vector2(1, -1).normalized     // Bottom right
-            };
-
             for (int i = 0; i < 4; i++)
             {
                 GameObject smallMeteor = Instantiate(smallMeteorPrefabs[i], transform.position, Quaternion.identity);
                 MeteorMovement smallMeteorMovement = smallMeteor.GetComponent<MeteorMovement>();
-                smallMeteorMovement.SetDirection(directions[i]);
+
+                // Generate a random angle in degrees
+                float angle = Random.Range(0f, 360f);
+
+                // Convert the angle to a direction vector
+                Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+
+                smallMeteorMovement.SetDirection(direction);
             }
         }
     }
+
     public void SetDirection(Vector2 direction)
     {
         if (rb == null) rb = GetComponent<Rigidbody2D>();
