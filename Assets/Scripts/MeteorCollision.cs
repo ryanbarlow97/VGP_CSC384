@@ -4,7 +4,7 @@ public class MeteorCollision : MonoBehaviour
 {
     public GameObject explosionPrefab;
     public GameObject[] smallMeteorPrefabs;
-
+    
     private MeteorMovement meteorMovement;
 
     private void Start()
@@ -26,17 +26,15 @@ public class MeteorCollision : MonoBehaviour
             Vector2 bulletImpactDirection = collision.GetContact(0).normal * -1;
 
             // Spawn smaller meteors
-            ICommand spawnSmallerMeteorsCommand = new SpawnSmallerMeteorsCommand(meteorMovement.smallMeteorPrefabs, transform.position, meteorMovement.speed / 2, -collision.contacts[0].normal);
-
-            
+            ICommand spawnSmallerMeteorsCommand = new SpawnSmallerMeteorsCommand(
+                smallMeteorPrefabs, transform.position, meteorMovement.speed / 2, -collision.contacts[0].normal, transform.localScale.x);
             spawnSmallerMeteorsCommand.Execute();
 
             // Destroy the meteor
             Destroy(gameObject);
 
-            //Destroy explosion after 1.25 seconds
+            // Destroy explosion after 1.25 seconds
             Destroy(newExplosion, 1.25f);
         }
     }
-
 }
