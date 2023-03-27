@@ -110,12 +110,7 @@ public class PlayerMovement : MonoBehaviour
         {
             deactivateMainBoosterCommand.Execute();
         }
-        Vector3 velocity = rb.velocity * cameraSpeed;
-        Vector3 newCameraPosition = newCamera.transform.position
-                                        + velocity * Time.deltaTime;
 
-
-        newCamera.transform.position = newCameraPosition;
     }
     
     float WrapValue(float value, float min, float max)
