@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1518173071255710688}
   - component: {fileID: 8825108997267477574}
   - component: {fileID: 8447897956436992410}
-  - component: {fileID: -943238245982239828}
   - component: {fileID: -927634329648992115}
   - component: {fileID: 786563285610771850}
+  - component: {fileID: 5306241019001219420}
   m_Layer: 0
   m_Name: Metorite
   m_TagString: MeteorLarge
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2952009545824456217}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7311246, y: 0.7311246, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -124,23 +124,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   smallMeteorPrefabs:
-  - {fileID: 2952009545824456217, guid: c216129a482d3bd48a6c0ece30edbbc6, type: 3}
-  - {fileID: 2952009545824456217, guid: 56d18ba642e8a3c47b800e0f4b5cf864, type: 3}
   - {fileID: 2952009545824456217, guid: 5589ee4fe8e52b145908bbf361f96606, type: 3}
   - {fileID: 2952009545824456217, guid: e0b09b519217b2e4cbad6e1e1fae8399, type: 3}
---- !u!114 &-943238245982239828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2952009545824456217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c85be4f002ebb54a9d9d36d0eecba82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: 2
+  - {fileID: 2952009545824456217, guid: c216129a482d3bd48a6c0ece30edbbc6, type: 3}
+  - {fileID: 2952009545824456217, guid: 56d18ba642e8a3c47b800e0f4b5cf864, type: 3}
+  useInitialDirection: 0
 --- !u!114 &-927634329648992115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 2526295019082541065, guid: c1dbd9c1b23bb1e40ae01fb921ea866d, type: 3}
+  smallMeteorPrefabs: []
 --- !u!61 &786563285610771850
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -180,3 +169,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &5306241019001219420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2952009545824456217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c85be4f002ebb54a9d9d36d0eecba82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: 2

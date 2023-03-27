@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 330402274}
   m_Layer: 0
   m_Name: PlayerObject
-  m_TagString: Untagged
+  m_TagString: PlayerShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1360,9 +1360,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979ac7e948f90d6479b45679c7b8e925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 519420031}
-  parallaxEffectX: 0.4
-  parallaxEffectY: 0.4
+  speed: 0.4
+  maxSpeed: 0.4
+  minSpeed: 0.4
 --- !u!1 &742033062
 GameObject:
   m_ObjectHideFlags: 0
@@ -1552,9 +1552,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979ac7e948f90d6479b45679c7b8e925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 519420031}
-  parallaxEffectX: 0.7
-  parallaxEffectY: 0.7
+  speed: 0.8
+  maxSpeed: 0.8
+  minSpeed: 0.8
 --- !u!1 &748277172
 GameObject:
   m_ObjectHideFlags: 0
@@ -1744,9 +1744,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979ac7e948f90d6479b45679c7b8e925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 519420031}
-  parallaxEffectX: 0.5
-  parallaxEffectY: 0.5
+  speed: 0.6
+  maxSpeed: 0.6
+  minSpeed: 0.6
 --- !u!1 &816234045
 GameObject:
   m_ObjectHideFlags: 0
@@ -2802,9 +2802,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979ac7e948f90d6479b45679c7b8e925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 519420031}
-  parallaxEffectX: 0.3
-  parallaxEffectY: 0.3
+  speed: 0.2
+  maxSpeed: 0.2
+  minSpeed: 0.2
 --- !u!1 &1103938271
 GameObject:
   m_ObjectHideFlags: 0
@@ -4550,7 +4550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meteorPrefab: {fileID: 2952009545824456217, guid: 45c810548d8d2dd47915aa851c2e1081, type: 3}
-  spawnRate: 5
+  spawnRate: 2
 --- !u!4 &1826704300
 Transform:
   m_ObjectHideFlags: 0
@@ -5135,9 +5135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979ac7e948f90d6479b45679c7b8e925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 519420031}
-  parallaxEffectX: 0.8
-  parallaxEffectY: 0.8
+  speed: 1
+  maxSpeed: 1
+  minSpeed: 1
 --- !u!1 &2029543422
 GameObject:
   m_ObjectHideFlags: 0

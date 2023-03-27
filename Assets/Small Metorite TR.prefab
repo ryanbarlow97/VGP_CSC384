@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -943238245982239828}
   m_Layer: 0
   m_Name: Small Metorite TR
-  m_TagString: MeteorLarge
+  m_TagString: MeteorSmall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   smallMeteorPrefabs: []
+  useInitialDirection: 0
 --- !u!114 &-943238245982239828
 MonoBehaviour:
   m_ObjectHideFlags: 0
