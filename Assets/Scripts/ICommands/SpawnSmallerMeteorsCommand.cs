@@ -6,13 +6,16 @@ public class SpawnSmallerMeteorsCommand : ICommand
     private Vector3 spawnPosition;
     private float smallMeteorSpeed;
     private Vector2 bulletImpactDirection;
+    private float parentScale;
 
-    public SpawnSmallerMeteorsCommand(GameObject[] smallMeteorPrefabs, Vector3 spawnPosition, float smallMeteorSpeed, Vector2 bulletImpactDirection)
+
+    public SpawnSmallerMeteorsCommand(GameObject[] smallMeteorPrefabs, Vector3 spawnPosition, float smallMeteorSpeed, Vector2 bulletImpactDirection, float parentScale)
     {
         this.smallMeteorPrefabs = smallMeteorPrefabs;
         this.spawnPosition = spawnPosition;
         this.smallMeteorSpeed = smallMeteorSpeed;
         this.bulletImpactDirection = bulletImpactDirection;
+        this.parentScale = parentScale;
     }
 
     public void Execute()
@@ -22,6 +25,10 @@ public class SpawnSmallerMeteorsCommand : ICommand
             for (int i = 0; i < 4; i++)
             {
                 GameObject smallMeteor = GameObject.Instantiate(smallMeteorPrefabs[i], spawnPosition, Quaternion.identity);
+                
+                // Scale the small meteor to be 1/4 the size of the parent meteor
+                smallMeteor.transform.localScale = parentScale * smallMeteor.transform.localScale; 
+
                 MeteorMovement smallMeteorMovement = smallMeteor.GetComponent<MeteorMovement>();
 
                 // Set useInitialDirection to true for small meteors
