@@ -4,8 +4,6 @@ public class MeteorMovement : MonoBehaviour
 {
     public float speed = 5f; // Speed of the meteor
     private Rigidbody2D rb; // Rigidbody of the meteor
-
-    public GameObject[] smallMeteorPrefabs; // Array of small meteor prefabs
     private ICommand moveCommand; // Command to move the meteor
     private Vector2 direction; // Direction to move the meteor
 
