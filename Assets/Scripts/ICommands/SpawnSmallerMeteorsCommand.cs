@@ -8,7 +8,6 @@ public class SpawnSmallerMeteorsCommand : ICommand
     private Vector2 bulletImpactDirection;
     private float parentScale;
 
-
     public SpawnSmallerMeteorsCommand(GameObject[] smallMeteorPrefabs, Vector3 spawnPosition, float smallMeteorSpeed, Vector2 bulletImpactDirection, float parentScale)
     {
         this.smallMeteorPrefabs = smallMeteorPrefabs;
@@ -25,14 +24,11 @@ public class SpawnSmallerMeteorsCommand : ICommand
             for (int i = 0; i < 4; i++)
             {
                 GameObject smallMeteor = GameObject.Instantiate(smallMeteorPrefabs[i], spawnPosition, Quaternion.identity);
-                
+
                 // Scale the small meteor to be 1/4 the size of the parent meteor
-                smallMeteor.transform.localScale = parentScale * smallMeteor.transform.localScale; 
+                smallMeteor.transform.localScale = parentScale * smallMeteor.transform.localScale;
 
-                MeteorMovement smallMeteorMovement = smallMeteor.GetComponent<MeteorMovement>();
-
-                // Set useInitialDirection to true for small meteors
-                smallMeteorMovement.useInitialDirection = true;
+                Rigidbody2D smallMeteorRigidbody = smallMeteor.GetComponent<Rigidbody2D>();
 
                 // Calculate the base angle in degrees
                 float baseAngle = Mathf.Atan2(bulletImpactDirection.y, bulletImpactDirection.x) * Mathf.Rad2Deg + 180f;
@@ -44,8 +40,7 @@ public class SpawnSmallerMeteorsCommand : ICommand
                 Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
 
                 // Set the direction and speed for the small meteor
-                smallMeteorMovement.SetDirection(direction);
-                smallMeteorMovement.speed = smallMeteorSpeed;
+                smallMeteorRigidbody.velocity = direction * smallMeteorSpeed;
             }
         }
     }
