@@ -2,11 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ICommand
-{
-    void Execute();
-}
-
 public class PlayerMovement : MonoBehaviour
 {
     private float screenWidth;
@@ -26,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public float rotationSpeed;
     public float cameraSpeed;
 
+    private ICommand moveCommand;
     private ICommand rotateCommand;
     private ICommand activateMainBoosterCommand;
     private ICommand activateLeftBoosterCommand;
@@ -43,7 +39,6 @@ public class PlayerMovement : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
 
-
         activateLeftBoosterCommand = new ActivateBoosterCommand(leftBooster);
         activateRightBoosterCommand = new ActivateBoosterCommand(rightBooster);
         activateMainBoosterCommand = new ActivateBoosterCommand(mainBooster);
@@ -51,6 +46,8 @@ public class PlayerMovement : MonoBehaviour
         deactivateRightBoosterCommand = new DeactivateBoosterCommand(rightBooster);
         deactivateMainBoosterCommand = new DeactivateBoosterCommand(mainBooster);
         playThrustSoundCommand = new PlaySoundCommand(audioSource, thrustSound);
+
+
 
     }
     void Update()
@@ -63,10 +60,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (vertical > 0)
         {
-            Vector2 direction = transform.up;
-            rb.velocity += direction * acceleration * Time.deltaTime;
-            rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
+            Vector2 direction = transform.up;  
+            moveCommand = new MoveCommand(rb, acceleration * Time.deltaTime, maxSpeed, direction);
+
+            moveCommand.Execute();
         }
+
 
         Vector2 newPosition = (Vector2)transform.position + (Vector2)rb.velocity * Time.deltaTime;
 
