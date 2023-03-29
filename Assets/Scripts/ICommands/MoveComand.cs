@@ -18,7 +18,7 @@ public class MoveCommand : ICommand
 
     public void Execute()
     {
-        rb.velocity = direction * acceleration;
+        rb.velocity += direction * acceleration;
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
     }
 }
