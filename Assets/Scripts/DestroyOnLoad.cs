@@ -6,6 +6,9 @@ public class DestroyOnLoad : MonoBehaviour
 {
     void Awake()
     {
-        Destroy(AudioManager.instance.gameObject);
+        if (AudioManager.instance != null)
+        {
+            Destroy(AudioManager.instance.gameObject);
+        }
     }
 }
