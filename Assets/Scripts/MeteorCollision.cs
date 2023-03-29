@@ -30,7 +30,7 @@ public class MeteorCollision : MonoBehaviour
             Destroy(gameObject);
 
             // Destroy explosion after 1.25 seconds
-            Destroy(newExplosion, 1.25f);
+            Destroy(newExplosion, 0.8f);
         }
     }
 }
