@@ -3967,6 +3967,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerupPrefabs:
   - {fileID: 1296475435092820513, guid: e2123db1a0873cb45bbaf23e79fc063b, type: 3}
+  - {fileID: 1556429613690025366, guid: 78ffa1872b25d484db183640249ef473, type: 3}
   spawnRate: 5
   spawnAngleRange: 40
 --- !u!4 &1580947635
