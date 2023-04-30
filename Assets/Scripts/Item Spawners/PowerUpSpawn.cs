@@ -55,7 +55,7 @@ public class PowerUpSpawn : MonoBehaviour
             // Calculate the powerup's velocity
             Vector2 powerupDirection = GetSpawnDirection(spawnPosition);
             Rigidbody2D powerupRigidbody = powerup.GetComponent<Rigidbody2D>();
-            powerupRigidbody.velocity = powerupDirection * Random.Range(1f, 4f);
+            powerupRigidbody.velocity = powerupDirection * Random.Range(0.2f, 1f);
 
             yield return new WaitForSeconds(spawnRate);
         }

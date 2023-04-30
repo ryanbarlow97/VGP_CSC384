@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2675304580737898681}
   - component: {fileID: 1518173071255710688}
   - component: {fileID: 8825108997267477574}
-  - component: {fileID: -943238245982239828}
+  - component: {fileID: 1741782115369091389}
   m_Layer: 0
   m_Name: Small Metorite BR
   m_TagString: MeteorSmall
@@ -107,7 +107,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-943238245982239828
+--- !u!114 &1741782115369091389
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2952009545824456217}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c85be4f002ebb54a9d9d36d0eecba82, type: 3}
+  m_Script: {fileID: 11500000, guid: 777a9c9e02975bd4e997cef8937ae866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 2

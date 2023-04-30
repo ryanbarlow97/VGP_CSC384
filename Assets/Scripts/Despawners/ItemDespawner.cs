@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MeteorDespawner : MonoBehaviour
+public class ItemDespawner : MonoBehaviour
 {
     public float offset = 2f;
     private Rigidbody2D rb;

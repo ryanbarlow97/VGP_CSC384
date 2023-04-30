@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8825108997267477574}
   - component: {fileID: -927634329648992115}
   - component: {fileID: 786563285610771850}
-  - component: {fileID: 5306241019001219420}
+  - component: {fileID: -1251592221117408095}
   m_Layer: 0
   m_Name: Metorite
   m_TagString: MeteorLarge
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2952009545824456217}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1767321, y: 1.1767321, z: 1}
+  m_LocalScale: {x: 1.8519766, y: 1.8519766, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -137,7 +137,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -153,7 +153,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &5306241019001219420
+--- !u!114 &-1251592221117408095
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2952009545824456217}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c85be4f002ebb54a9d9d36d0eecba82, type: 3}
+  m_Script: {fileID: 11500000, guid: 777a9c9e02975bd4e997cef8937ae866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 2

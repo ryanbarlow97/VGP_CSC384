@@ -416,7 +416,7 @@ MonoBehaviour:
   newCamera: {fileID: 519420031}
   acceleration: 0.5
   maxSpeed: 1.25
-  rotationSpeed: 200
+  rotationSpeed: 300
 --- !u!212 &330402270
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3932,7 +3932,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1580947635}
-  - component: {fileID: 1580947634}
   - component: {fileID: 1580947633}
   m_Layer: 0
   m_Name: PowerUpSpawns
@@ -3956,21 +3955,6 @@ MonoBehaviour:
   powerupPrefabs:
   - {fileID: 2539632148715888742, guid: fdffa24b699b0964892ee6ff4837cd30, type: 3}
   spawnRate: 5
-  spawnAngleRange: 40
---- !u!114 &1580947634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1580947632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9b8677c563dda04cb8238d52fcc83ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meteorPrefab: {fileID: 2952009545824456217, guid: 45c810548d8d2dd47915aa851c2e1081, type: 3}
-  spawnRate: 2
   spawnAngleRange: 40
 --- !u!4 &1580947635
 Transform:
@@ -4659,7 +4643,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1826704300}
-  - component: {fileID: 1826704299}
+  - component: {fileID: 1826704301}
   m_Layer: 0
   m_Name: MeteorSpawns
   m_TagString: Untagged
@@ -4667,21 +4651,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1826704299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1826704298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9b8677c563dda04cb8238d52fcc83ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meteorPrefab: {fileID: 2952009545824456217, guid: 45c810548d8d2dd47915aa851c2e1081, type: 3}
-  spawnRate: 2
-  spawnAngleRange: 40
 --- !u!4 &1826704300
 Transform:
   m_ObjectHideFlags: 0
@@ -4697,6 +4666,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1826704301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826704298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95587edae55788f4cbd02b2bb398fdac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meteorPrefab: {fileID: 2952009545824456217, guid: 45c810548d8d2dd47915aa851c2e1081, type: 3}
+  spawnRate: 1
+  spawnAngleRange: 40
 --- !u!1 &1842364780
 GameObject:
   m_ObjectHideFlags: 0
