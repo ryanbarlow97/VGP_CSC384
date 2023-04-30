@@ -19,7 +19,6 @@ public class PlayerMovement : MonoBehaviour
     public float acceleration;
     public float maxSpeed;
     public float rotationSpeed;
-    public float cameraSpeed;
 
     private ICommand moveCommand;
     private ICommand rotateCommand;
@@ -46,9 +45,6 @@ public class PlayerMovement : MonoBehaviour
         deactivateRightBoosterCommand = new DeactivateBoosterCommand(rightBooster);
         deactivateMainBoosterCommand = new DeactivateBoosterCommand(mainBooster);
         playThrustSoundCommand = new PlaySoundCommand(audioSource, thrustSound);
-
-
-
     }
     void Update()
     {

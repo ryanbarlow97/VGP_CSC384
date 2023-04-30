@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class MeteorSpawn : MonoBehaviour
+public class MeteorSpawner : MonoBehaviour
 {
     public GameObject meteorPrefab;
     public float spawnRate = 1f;

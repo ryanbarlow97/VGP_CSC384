@@ -32,5 +32,10 @@ public class MeteorCollision : MonoBehaviour
             // Destroy explosion after 1.25 seconds
             Destroy(newExplosion, 0.8f);
         }
+
+        if (collision.collider.CompareTag("PlayerShip"))
+        {
+            Debug.Log("PlayerLost");
+        }
     }
 }
