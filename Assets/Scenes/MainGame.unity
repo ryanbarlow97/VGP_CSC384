@@ -389,6 +389,7 @@ GameObject:
   - component: {fileID: 330402271}
   - component: {fileID: 330402274}
   - component: {fileID: 330402275}
+  - component: {fileID: 330402276}
   m_Layer: 0
   m_Name: PlayerObject
   m_TagString: PlayerShip
@@ -556,6 +557,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.22, y: 0.3}
   m_EdgeRadius: 0
+--- !u!114 &330402276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330402266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eee833b01c367e44a09540d7006951b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &371717303
 GameObject:
   m_ObjectHideFlags: 0
@@ -3953,7 +3966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerupPrefabs:
-  - {fileID: 2539632148715888742, guid: fdffa24b699b0964892ee6ff4837cd30, type: 3}
+  - {fileID: 1296475435092820513, guid: e2123db1a0873cb45bbaf23e79fc063b, type: 3}
   spawnRate: 5
   spawnAngleRange: 40
 --- !u!4 &1580947635
