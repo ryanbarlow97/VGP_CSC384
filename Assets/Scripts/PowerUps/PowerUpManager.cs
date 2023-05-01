@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PowerUpManager : MonoBehaviour
@@ -7,6 +8,9 @@ public class PowerUpManager : MonoBehaviour
     private bool tripleFireRatePowerUpActive = false;
     private PowerUpEventManager eventManager;
     [SerializeField] private RemainingTimeUI timerBarController;
+    [SerializeField] private Image speedPowerUpImage;
+    [SerializeField] private Image tripleFireRatePowerUpImage;
+
 
     private void Start()
     {
@@ -23,7 +27,7 @@ public class PowerUpManager : MonoBehaviour
 
     private void ActivateSpeedPowerUp(object powerUpObject)
     {
-        if (!speedPowerUpActive && powerUpObject is SpeedPowerUp powerUp)
+        if (!speedPowerUpActive && !tripleFireRatePowerUpActive && powerUpObject is SpeedPowerUp powerUp)
         {
             StartCoroutine(ApplyTemporarySpeedPowerUp(powerUp));
         }
@@ -38,6 +42,8 @@ public class PowerUpManager : MonoBehaviour
 
         timerBarController.SetMaxTime(speedPowerUp.duration);
         float timeElapsed = 0f;
+        speedPowerUpImage.enabled = true;
+
 
         while (timeElapsed < speedPowerUp.duration)
         {
@@ -48,16 +54,19 @@ public class PowerUpManager : MonoBehaviour
 
         playerMovement.acceleration /= speedPowerUp.speedMultiplier;
         speedPowerUpActive = false;
+        speedPowerUpImage.enabled = false;
+
     }
 
 
     private void ActivateTripleFireRatePowerUp(object powerUpObject)
     {
-        if (!tripleFireRatePowerUpActive && powerUpObject is TripleFireRatePowerUp powerUp)
+        if (!tripleFireRatePowerUpActive && !speedPowerUpActive && powerUpObject is TripleFireRatePowerUp powerUp)
         {
             StartCoroutine(ApplyTemporaryTripleFireRatePowerUp(powerUp));
         }
     }
+
 
     private IEnumerator ApplyTemporaryTripleFireRatePowerUp(TripleFireRatePowerUp tripleFireRatePowerUp)
     {
@@ -68,6 +77,7 @@ public class PowerUpManager : MonoBehaviour
 
         timerBarController.SetMaxTime(tripleFireRatePowerUp.duration);
         float timeElapsed = 0f;
+        tripleFireRatePowerUpImage.enabled = true;
 
         while (timeElapsed < tripleFireRatePowerUp.duration)
         {
@@ -78,5 +88,11 @@ public class PowerUpManager : MonoBehaviour
 
         weaponSystem.fireRate *= tripleFireRatePowerUp.fireRateMultiplier;
         tripleFireRatePowerUpActive = false;
+        tripleFireRatePowerUpImage.enabled = false;
+    }
+
+    public bool IsAnyPowerUpActive()
+    {
+        return speedPowerUpActive || tripleFireRatePowerUpActive;
     }
 }
