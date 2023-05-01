@@ -572,6 +572,7 @@ MonoBehaviour:
   timerBarController: {fileID: 1915985387}
   speedPowerUpImage: {fileID: 1601377563}
   tripleFireRatePowerUpImage: {fileID: 473188648}
+  RemainingTinmeBar: {fileID: 1915985385}
 --- !u!1 &371717303
 GameObject:
   m_ObjectHideFlags: 0
@@ -4180,7 +4181,7 @@ MonoBehaviour:
   powerupPrefabs:
   - {fileID: 1296475435092820513, guid: e2123db1a0873cb45bbaf23e79fc063b, type: 3}
   - {fileID: 1556429613690025366, guid: 78ffa1872b25d484db183640249ef473, type: 3}
-  spawnRate: 5
+  spawnRate: 10
   spawnAngleRange: 40
 --- !u!4 &1580947635
 Transform:
@@ -5328,7 +5329,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1915985383}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 

@@ -10,6 +10,7 @@ public class PowerUpManager : MonoBehaviour
     [SerializeField] private RemainingTimeUI timerBarController;
     [SerializeField] private Image speedPowerUpImage;
     [SerializeField] private Image tripleFireRatePowerUpImage;
+    [SerializeField] private Image RemainingTinmeBar;
 
 
     private void Start()
@@ -43,6 +44,7 @@ public class PowerUpManager : MonoBehaviour
         timerBarController.SetMaxTime(speedPowerUp.duration);
         float timeElapsed = 0f;
         speedPowerUpImage.enabled = true;
+        RemainingTinmeBar.enabled = true;
 
 
         while (timeElapsed < speedPowerUp.duration)
@@ -55,7 +57,7 @@ public class PowerUpManager : MonoBehaviour
         playerMovement.acceleration /= speedPowerUp.speedMultiplier;
         speedPowerUpActive = false;
         speedPowerUpImage.enabled = false;
-
+        RemainingTinmeBar.enabled = false;
     }
 
 
@@ -78,6 +80,7 @@ public class PowerUpManager : MonoBehaviour
         timerBarController.SetMaxTime(tripleFireRatePowerUp.duration);
         float timeElapsed = 0f;
         tripleFireRatePowerUpImage.enabled = true;
+        RemainingTinmeBar.enabled = true;
 
         while (timeElapsed < tripleFireRatePowerUp.duration)
         {
@@ -89,6 +92,8 @@ public class PowerUpManager : MonoBehaviour
         weaponSystem.fireRate *= tripleFireRatePowerUp.fireRateMultiplier;
         tripleFireRatePowerUpActive = false;
         tripleFireRatePowerUpImage.enabled = false;
+        RemainingTinmeBar.enabled = false;
+
     }
 
     public bool IsAnyPowerUpActive()
