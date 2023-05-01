@@ -6,6 +6,7 @@ public class PowerUpManager : MonoBehaviour
     private bool speedPowerUpActive = false;
     private bool tripleFireRatePowerUpActive = false;
     private PowerUpEventManager eventManager;
+    [SerializeField] private RemainingTimeUI timerBarController;
 
     private void Start()
     {
@@ -34,12 +35,21 @@ public class PowerUpManager : MonoBehaviour
         PlayerMovement playerMovement = GetComponent<PlayerMovement>();
 
         playerMovement.acceleration *= speedPowerUp.speedMultiplier;
-        
-        yield return new WaitForSeconds(speedPowerUp.duration);
+
+        timerBarController.SetMaxTime(speedPowerUp.duration);
+        float timeElapsed = 0f;
+
+        while (timeElapsed < speedPowerUp.duration)
+        {
+            timeElapsed += Time.deltaTime;
+            timerBarController.SetCurrentTime(speedPowerUp.duration - timeElapsed);
+            yield return null;
+        }
 
         playerMovement.acceleration /= speedPowerUp.speedMultiplier;
         speedPowerUpActive = false;
     }
+
 
     private void ActivateTripleFireRatePowerUp(object powerUpObject)
     {
@@ -56,7 +66,15 @@ public class PowerUpManager : MonoBehaviour
 
         weaponSystem.fireRate /= tripleFireRatePowerUp.fireRateMultiplier;
 
-        yield return new WaitForSeconds(tripleFireRatePowerUp.duration);
+        timerBarController.SetMaxTime(tripleFireRatePowerUp.duration);
+        float timeElapsed = 0f;
+
+        while (timeElapsed < tripleFireRatePowerUp.duration)
+        {
+            timeElapsed += Time.deltaTime;
+            timerBarController.SetCurrentTime(tripleFireRatePowerUp.duration - timeElapsed);
+            yield return null;
+        }
 
         weaponSystem.fireRate *= tripleFireRatePowerUp.fireRateMultiplier;
         tripleFireRatePowerUpActive = false;
