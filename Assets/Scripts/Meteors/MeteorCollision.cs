@@ -4,7 +4,12 @@ public class MeteorCollision : MonoBehaviour
 {
     public GameObject explosionPrefab;
     public GameObject[] smallMeteorPrefabs;
+    private LivesCounter livesCounter;
 
+    private void Start()
+    {
+        livesCounter = FindObjectOfType<LivesCounter>();
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Bullet"))
@@ -35,7 +40,16 @@ public class MeteorCollision : MonoBehaviour
 
         if (other.CompareTag("PlayerShip"))
         {
-            Debug.Log("PlayerLost");
+            livesCounter.PlayerHit();
+
+            // Spawn an explosion at the meteor's position
+            GameObject newExplosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
+            // Destroy the meteor
+            Destroy(gameObject);
+
+            // Destroy explosion after 0.8 seconds
+            Destroy(newExplosion, 0.8f);
         }
     }
 }
