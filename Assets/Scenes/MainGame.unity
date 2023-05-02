@@ -486,6 +486,7 @@ MonoBehaviour:
   bulletSpeed: 10
   firePoint: {fileID: 1046813770}
   fireRate: 0.25
+  canShoot: 1
 --- !u!224 &330402272
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6180,6 +6181,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   livesText: {fileID: 2110317402}
+  playerShip: {fileID: 330402266}
+  playerSpriteRenderer: {fileID: 330402270}
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDuration: 0.1
 --- !u!1 &2122667896
 GameObject:
   m_ObjectHideFlags: 0

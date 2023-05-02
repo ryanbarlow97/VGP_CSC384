@@ -33,14 +33,20 @@ public class SpawnSmallerMeteorsCommand : ICommand
                 // Calculate the base angle in degrees
                 float baseAngle = Mathf.Atan2(bulletImpactDirection.y, bulletImpactDirection.x) * Mathf.Rad2Deg + 180f;
 
-                // Calculate a random angle within the 45-degree range
-                float angle = baseAngle - 22.5f + Random.Range(0f, 45f);
+                // Calculate a random angle within the 90-degree range
+                float angle = baseAngle - 45f + Random.Range(0f, 90f);
 
                 // Convert the angle to a direction vector
                 Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
 
+                // Add randomness to the small meteor speed
+                float randomizedSpeed = smallMeteorSpeed * Random.Range(0.8f, 1.2f);
+
                 // Set the direction and speed for the small meteor
-                smallMeteorRigidbody.velocity = direction * smallMeteorSpeed;
+                smallMeteorRigidbody.velocity = direction * randomizedSpeed;
+
+                // Add random angular velocity to the small meteor
+                smallMeteorRigidbody.angularVelocity = Random.Range(-100f, 100f);
             }
         }
     }
