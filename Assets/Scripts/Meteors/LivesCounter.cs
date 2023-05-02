@@ -12,22 +12,31 @@ public class LivesCounter : MonoBehaviour
     [SerializeField] private int lives = 3;
     [SerializeField] private GameObject explosionPrefab;
 
-
+    public AudioSource audioSource;
+    public AudioClip healthLoss;
+    public AudioClip gameOver;
+    private ICommand playHeathLossSoundCommand;
+    private ICommand playGameOverSoundCommand;
     private void Start()
     {
         UpdateLivesText();
+        playHeathLossSoundCommand = new PlaySoundCommand(audioSource, healthLoss);
+        playGameOverSoundCommand = new PlaySoundCommand(audioSource, gameOver);
+
     }
 
     public void PlayerHit()
     {
-        if (lives > 0)
+        if (lives > 1)
         {
             lives--;
             UpdateLivesText();
+            playHeathLossSoundCommand.Execute();
             StartCoroutine(RespawnPlayer());
         }
         else
         {
+            playGameOverSoundCommand.Execute();
             // Game over
         }
     }
