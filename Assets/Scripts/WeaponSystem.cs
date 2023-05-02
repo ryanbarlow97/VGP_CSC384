@@ -7,19 +7,37 @@ public class WeaponSystem : MonoBehaviour
     public GameObject bulletPrefab;
     public float bulletSpeed = 10f;
     public Transform firePoint;
-    public float fireRate = 0.25f; // Time in seconds between shots
-    private float nextFireTime = 0f; // Time when the next shot is allowed
-    public bool canShoot = true; // Add a public boolean variable to control shooting
+    public float fireRate = 0.25f;
+    private float nextFireTime = 0f;
+    public bool canShoot = true;
 
+    public AudioClip shootSound;
+    private ICommand playShootSoundCommand;
+    private bool isPlayingShootSound;
+
+    void Start()
+    {
+        playShootSoundCommand = new PlaySoundCommand(this, shootSound);
+    }
 
     void Update()
     {
-        if (Input.GetButton("Jump") && Time.time > nextFireTime && canShoot)
+        if (Input.GetButtonDown("Jump") && canShoot)
         {
-            nextFireTime = Time.time + fireRate;
-            Shoot();
+            if (Time.time > nextFireTime)
+            {
+                nextFireTime = Time.time + fireRate;
+                Shoot();
+                playShootSoundCommand.Execute();
+
+            }
         }
-    }   
+        else
+        {
+            StopAllCoroutines();
+        }
+    }
+
     void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
