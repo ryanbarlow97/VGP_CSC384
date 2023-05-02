@@ -13,7 +13,7 @@ public class TripleFireRatePowerUp : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("PlayerShip") && !powerUpManager.IsAnyPowerUpActive())
+        if (other.gameObject.CompareTag("PlayerShip"))
         {
             // Destroy the powerup
             Destroy(gameObject);

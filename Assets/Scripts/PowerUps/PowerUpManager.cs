@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -11,7 +12,15 @@ public class PowerUpManager : MonoBehaviour
     [SerializeField] private Image speedPowerUpImage;
     [SerializeField] private Image tripleFireRatePowerUpImage;
     [SerializeField] private Image RemainingTinmeBar;
+    private Queue<IEnumerator> powerUpQueue = new Queue<IEnumerator>();
 
+    private void Update()
+    {
+        if (powerUpQueue.Count > 0 && !IsAnyPowerUpActive())
+        {
+            StartCoroutine(powerUpQueue.Dequeue());
+        }
+    }
 
     private void Start()
     {
@@ -28,9 +37,9 @@ public class PowerUpManager : MonoBehaviour
 
     private void ActivateSpeedPowerUp(object powerUpObject)
     {
-        if (!speedPowerUpActive && !tripleFireRatePowerUpActive && powerUpObject is SpeedPowerUp powerUp)
+        if (powerUpObject is SpeedPowerUp powerUp)
         {
-            StartCoroutine(ApplyTemporarySpeedPowerUp(powerUp));
+            powerUpQueue.Enqueue(ApplyTemporarySpeedPowerUp(powerUp));
         }
     }
 
@@ -63,9 +72,9 @@ public class PowerUpManager : MonoBehaviour
 
     private void ActivateTripleFireRatePowerUp(object powerUpObject)
     {
-        if (!tripleFireRatePowerUpActive && !speedPowerUpActive && powerUpObject is TripleFireRatePowerUp powerUp)
+        if (powerUpObject is TripleFireRatePowerUp powerUp)
         {
-            StartCoroutine(ApplyTemporaryTripleFireRatePowerUp(powerUp));
+            powerUpQueue.Enqueue(ApplyTemporaryTripleFireRatePowerUp(powerUp));
         }
     }
 
