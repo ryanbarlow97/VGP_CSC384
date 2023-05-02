@@ -9,8 +9,7 @@ public class LivesCounter : MonoBehaviour
     [SerializeField] private SpriteRenderer playerSpriteRenderer;
     [SerializeField] private Color flashColor = Color.red;
     [SerializeField] private float flashDuration = 0.1f;
-
-    private int lives = 3;
+    [SerializeField] private int lives = 3;
 
     private void Start()
     {
