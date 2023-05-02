@@ -14,7 +14,7 @@ public class WeaponSystem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space) && Time.time > nextFireTime && canShoot)
+        if (Input.GetButton("Jump") && Time.time > nextFireTime && canShoot)
         {
             nextFireTime = Time.time + fireRate;
             Shoot();

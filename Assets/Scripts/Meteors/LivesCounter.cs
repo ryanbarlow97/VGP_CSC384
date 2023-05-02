@@ -10,6 +10,8 @@ public class LivesCounter : MonoBehaviour
     [SerializeField] private Color flashColor = Color.red;
     [SerializeField] private float flashDuration = 0.1f;
     [SerializeField] private int lives = 3;
+    [SerializeField] private GameObject explosionPrefab;
+
 
     private void Start()
     {
