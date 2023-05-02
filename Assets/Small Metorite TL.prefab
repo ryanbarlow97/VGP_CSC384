@@ -136,6 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 2526295019082541065, guid: c1dbd9c1b23bb1e40ae01fb921ea866d, type: 3}
   smallMeteorPrefabs: []
+  meteorExplosion: {fileID: 8300000, guid: 4a7a81f202249a546b22b946b80d7e75, type: 3}
 --- !u!61 &7917485901568337261
 BoxCollider2D:
   m_ObjectHideFlags: 0

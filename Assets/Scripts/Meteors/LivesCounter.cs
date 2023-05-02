@@ -20,8 +20,8 @@ public class LivesCounter : MonoBehaviour
     private void Start()
     {
         UpdateLivesText();
-        playHeathLossSoundCommand = new PlaySoundCommand(audioSource, healthLoss);
-        playGameOverSoundCommand = new PlaySoundCommand(audioSource, gameOver);
+        playHeathLossSoundCommand = new PlaySoundCommand(this, healthLoss);
+        playGameOverSoundCommand = new PlaySoundCommand(this, gameOver);
 
     }
 
@@ -36,8 +36,9 @@ public class LivesCounter : MonoBehaviour
         }
         else
         {
+            lives--;
+            UpdateLivesText();
             playGameOverSoundCommand.Execute();
-            // Game over
         }
     }
 

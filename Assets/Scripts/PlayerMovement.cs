@@ -44,7 +44,8 @@ public class PlayerMovement : MonoBehaviour
         deactivateLeftBoosterCommand = new DeactivateBoosterCommand(leftBooster);
         deactivateRightBoosterCommand = new DeactivateBoosterCommand(rightBooster);
         deactivateMainBoosterCommand = new DeactivateBoosterCommand(mainBooster);
-        playThrustSoundCommand = new PlaySoundCommand(audioSource, thrustSound);
+        audioSource.clip = thrustSound;
+        audioSource.loop = false;
     }
     void Update()
     {
@@ -98,14 +99,19 @@ public class PlayerMovement : MonoBehaviour
         if (previousPosition != (Vector2)transform.position && vertical > 0)
         {
             activateMainBoosterCommand.Execute();
-
-            playThrustSoundCommand.Execute();
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
         }
         else
         {
             deactivateMainBoosterCommand.Execute();
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
         }
-
     }
     
     float WrapValue(float value, float min, float max)

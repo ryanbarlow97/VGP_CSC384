@@ -3,21 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 public class PlaySoundCommand : ICommand
 {
+    private AudioClip clip;
+    private MonoBehaviour monoBehaviour;
     private AudioSource audioSource;
-    private AudioClip sound;
+    private bool loop;
 
-    public PlaySoundCommand(AudioSource audioSource, AudioClip sound)
+
+    public PlaySoundCommand(MonoBehaviour monoBehaviour, AudioClip clip, bool loop = false)
     {
-        this.audioSource = audioSource;
-        this.sound = sound;
+        this.monoBehaviour = monoBehaviour;
+        this.clip = clip;
+        this.loop = loop;
     }
 
     public void Execute()
     {
-        if (!audioSource.isPlaying)
+        GameObject audioSourceObject = new GameObject("AudioSourceObject");
+        audioSource = audioSourceObject.AddComponent<AudioSource>();
+        audioSource.clip = clip;
+        audioSource.volume = 1.0f;
+        audioSource.loop = loop;
+        audioSource.Play();
+        if (!loop)
         {
-            audioSource.clip = sound;
-            audioSource.Play();
+            monoBehaviour.StartCoroutine(DestroyAfterPlaying());
+        }
+    }
+
+    private IEnumerator DestroyAfterPlaying()
+    {
+        yield return new WaitForSeconds(clip.length);
+
+        if (audioSource != null)
+        {
+            Object.Destroy(audioSource.gameObject);
         }
     }
 }

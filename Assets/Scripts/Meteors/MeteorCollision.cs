@@ -5,10 +5,13 @@ public class MeteorCollision : MonoBehaviour
     public GameObject explosionPrefab;
     public GameObject[] smallMeteorPrefabs;
     private LivesCounter livesCounter;
+    public AudioClip meteorExplosion;
+    private ICommand playMeteorSoundCommand;
 
     private void Start()
     {
         livesCounter = FindObjectOfType<LivesCounter>();
+        playMeteorSoundCommand = new PlaySoundCommand(livesCounter, meteorExplosion);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -30,7 +33,8 @@ public class MeteorCollision : MonoBehaviour
             ICommand spawnSmallerMeteorsCommand = new SpawnSmallerMeteorsCommand(
                 smallMeteorPrefabs, transform.position, meteorSpeed / 2, bulletImpactDirection, transform.localScale.x);
             spawnSmallerMeteorsCommand.Execute();
-
+        
+            playMeteorSoundCommand.Execute();
             // Destroy the meteor
             Destroy(gameObject);
 
