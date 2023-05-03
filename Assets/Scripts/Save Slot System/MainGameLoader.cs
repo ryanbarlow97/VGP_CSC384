@@ -43,6 +43,7 @@ public class MainGameLoader : MonoBehaviour
 
                 GameObject meteor = Instantiate(meteorPrefab, position, Quaternion.identity);
                 meteor.GetComponent<Rigidbody2D>().velocity = velocity;
+                meteor.transform.localScale = scale;
             }
 
             // Spawn the smaller meteors
