@@ -56,7 +56,8 @@ public class MainGameLoader : MonoBehaviour
                 Vector3 rotation = smallMeteorData.rotation.ToVector3();
                 float angularVelocity = smallMeteorData.angularVelocity.ToFloat();
 
-                GameObject meteor = Instantiate(smallMeteorPrefab[meteorType], position, Quaternion.identity);
+                Quaternion rotationQuaternion = Quaternion.Euler(rotation);
+                GameObject meteor = Instantiate(smallMeteorPrefab[meteorType], position, rotationQuaternion);
                 meteor.GetComponent<Rigidbody2D>().velocity = velocity;
                 meteor.GetComponent<Rigidbody2D>().angularVelocity = angularVelocity;
                 meteor.transform.localScale = scale;
