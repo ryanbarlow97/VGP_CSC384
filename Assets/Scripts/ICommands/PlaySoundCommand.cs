@@ -32,7 +32,7 @@ public class PlaySoundCommand : ICommand
 
     private IEnumerator DestroyAfterPlaying()
     {
-        yield return new WaitForSeconds(clip.length);
+        yield return new WaitForSeconds(clip.length+0.2f);
 
         if (audioSource != null)
         {

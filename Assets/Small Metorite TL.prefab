@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7917485901568337261}
   m_Layer: 0
   m_Name: Small Metorite TL
-  m_TagString: MeteorSmall
+  m_TagString: MeteorSmallTL
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -9,7 +9,8 @@ public class LivesCounter : MonoBehaviour
     [SerializeField] private SpriteRenderer playerSpriteRenderer;
     [SerializeField] private Color flashColor = Color.red;
     [SerializeField] private float flashDuration = 0.1f;
-    [SerializeField] private int lives = 3;
+    [SerializeField] private int startingLives = 3;
+    private int lives;
     [SerializeField] private GameObject explosionPrefab;
 
     public AudioSource audioSource;
@@ -19,10 +20,21 @@ public class LivesCounter : MonoBehaviour
     private ICommand playGameOverSoundCommand;
     private void Start()
     {
-        UpdateLivesText();
+        
         playHeathLossSoundCommand = new PlaySoundCommand(this, healthLoss);
         playGameOverSoundCommand = new PlaySoundCommand(this, gameOver);
 
+        int saveSlotNumber = 1;
+        SaveData saveData = SaveManager.Load(saveSlotNumber);
+        if (saveData != null)
+        {
+            lives = saveData.playerHearts;
+        }
+        else
+        {
+            lives = startingLives;
+        }
+        UpdateLivesText();
     }
 
     public void PlayerHit()
@@ -80,5 +92,10 @@ public class LivesCounter : MonoBehaviour
 
         // Allow shooting again
         weaponSystem.canShoot = true;
+    }
+
+    public int GetLives()
+    {
+        return lives;
     }
 }

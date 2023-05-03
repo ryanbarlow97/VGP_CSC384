@@ -1,0 +1,140 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+using TMPro;
+using System.Linq;
+
+public class MainGameButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+{
+    [Header("Button Hover Text:")] 
+    [SerializeField] private TextMeshProUGUI originalText;
+    [SerializeField] private GameObject player;
+    [SerializeField] private LivesCounter livesCounter;
+
+    private Color originalColor;
+    private int saveSlotNumber = 1;
+
+    private void Start()
+    {
+        originalColor = originalText.color;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        originalText.color = Color.white;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        originalText.color = originalColor;
+    }
+
+    public void OnBackButtonPressed()
+    {
+        SaveGameData();
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    private void SaveGameData()
+    {
+        SaveData savedData = SaveManager.Load(saveSlotNumber);
+        SaveData currentSaveData = GetCurrentSaveData(savedData);
+        SaveManager.Save(currentSaveData, saveSlotNumber);
+    }
+
+    private SaveData GetCurrentSaveData(SaveData savedData)
+    {
+        SaveData currentSaveData = new SaveData
+        {
+            playerName = savedData.playerName,
+            playerLevel = 1,
+            playerScore = 20,
+            playerHearts = livesCounter.GetLives(),
+            playerPosition = SerializableVector3.FromVector3(player.transform.position),
+            playerRotation = SerializableVector3.FromVector3(player.transform.eulerAngles),
+            meteorDataList = GetMeteorDataList(),
+            smallMeteorDataList = GetSmallMeteorDataList()
+        };
+
+        return currentSaveData;
+    }
+
+    private List<MeteorData> GetMeteorDataList()
+    {
+        List<MeteorData> meteorDataList = new List<MeteorData>();
+        GameObject[] meteors = GameObject.FindGameObjectsWithTag("MeteorLarge");
+
+        foreach (GameObject meteor in meteors)
+        {
+            Rigidbody2D meteorRigidbody = meteor.GetComponent<Rigidbody2D>();
+            if (meteorRigidbody != null)
+            {
+                MeteorData meteorData = new MeteorData
+                {
+                    position = SerializableVector3.FromVector3(meteor.transform.position),
+                    velocity = SerializableVector3.FromVector3(meteorRigidbody.velocity),
+                    scale = SerializableVector3.FromVector3(meteor.transform.localScale),
+                };
+                meteorDataList.Add(meteorData);
+            }
+        }
+
+        return meteorDataList;
+    }
+
+    private List<SmallMeteorData> GetSmallMeteorDataList()
+    {
+        List<SmallMeteorData> smallMeteorDataList = new List<SmallMeteorData>();
+        GameObject[] smallMeteors = GameObject.FindGameObjectsWithTag("MeteorSmallBL") 
+                                    .Concat(GameObject.FindGameObjectsWithTag("MeteorSmallBR"))
+                                    .Concat(GameObject.FindGameObjectsWithTag("MeteorSmallTL"))
+                                    .Concat(GameObject.FindGameObjectsWithTag("MeteorSmallTR"))
+                                    .ToArray();
+
+        foreach (GameObject smallMeteor in smallMeteors)
+        {
+            Rigidbody2D smallMeteorRigidbody = smallMeteor.GetComponent<Rigidbody2D>();
+            if (smallMeteorRigidbody != null)
+            {
+                SmallMeteorData smallMeteorData = new SmallMeteorData
+                {
+                    meteorType = GetMeteorType(smallMeteor),
+                    position = SerializableVector3.FromVector3(smallMeteor.transform.position),
+                    velocity = SerializableVector3.FromVector3(smallMeteorRigidbody.velocity),
+                    scale = SerializableVector3.FromVector3(smallMeteor.transform.localScale),
+                    rotation = SerializableVector3.FromVector3(smallMeteor.transform.eulerAngles),
+                    angularVelocity = new SerializableFloat(smallMeteorRigidbody.angularVelocity)
+                };
+                smallMeteorDataList.Add(smallMeteorData);
+            }
+        }
+
+        return smallMeteorDataList;
+    }
+
+    private int GetMeteorType(GameObject smallMeteor)
+    {
+        int meteorType = 0;
+
+        if (smallMeteor.CompareTag("MeteorSmallBL"))
+        {
+            meteorType = 0;
+        }
+        else if (smallMeteor.CompareTag("MeteorSmallBR"))
+        {
+            meteorType = 1;
+        }
+        else if (smallMeteor.CompareTag("MeteorSmallTL"))
+        {
+            meteorType = 2;
+        }
+        else if (smallMeteor.CompareTag("MeteorSmallTR"))
+        {
+            meteorType = 3;
+        }
+
+        return meteorType;
+    }
+}
+

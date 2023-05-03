@@ -7,7 +7,10 @@ TagManager:
   - Bullet
   - MeteorLarge
   - PlayerShip
-  - MeteorSmall
+  - MeteorSmallBL
+  - MeteorSmallBR
+  - MeteorSmallTL
+  - MeteorSmallTR
   layers:
   - Default
   - TransparentFX
