@@ -10,16 +10,15 @@ public class LivesCounter : MonoBehaviour
     [SerializeField] private Color flashColor = Color.red;
     [SerializeField] private float flashDuration = 0.1f;
     [SerializeField] private int startingLives = 3;
-    private int lives;
     [SerializeField] private GameObject explosionPrefab;
-
-    public AudioSource audioSource;
+    public PauseMenu pauseMenu;
     public AudioClip healthLoss;
     public AudioClip gameOver;
     private ICommand playHeathLossSoundCommand;
     private ICommand playGameOverSoundCommand;
-
     private int saveSlotNumber;
+    private int lives;
+
     private void Start()
     {
         MainGameLoader mainGameLoader = FindObjectOfType<MainGameLoader>();
@@ -82,7 +81,7 @@ public class LivesCounter : MonoBehaviour
         weaponSystem.canShoot = false;
 
         // Freeze the game for 3 seconds
-        Time.timeScale = 0;
+        Time.timeScale = 0f;
 
         // Apply flashing color effect
         for (int i = 0; i < 10; i++)
@@ -94,7 +93,10 @@ public class LivesCounter : MonoBehaviour
         }
 
         // Unfreeze the game
-        Time.timeScale = 1;
+        if (!pauseMenu.IsGamePaused)
+        {
+            Time.timeScale = 1f;
+        }
 
         // Allow shooting again
         weaponSystem.canShoot = true;
@@ -107,13 +109,13 @@ public class LivesCounter : MonoBehaviour
 
 
     private IEnumerator ReloadPlayer()
-    {
+    {       
         // Disallow shooting
         WeaponSystem weaponSystem = playerShip.GetComponent<WeaponSystem>();
         weaponSystem.canShoot = false;
 
         // Freeze the game for 3 seconds
-        Time.timeScale = 0;
+        Time.timeScale = 0f;
 
         // Apply flashing color effect
         for (int i = 0; i < 10; i++)
@@ -124,8 +126,10 @@ public class LivesCounter : MonoBehaviour
             yield return new WaitForSecondsRealtime(flashDuration);
         }
 
-        // Unfreeze the game
-        Time.timeScale = 1;
+        if (!pauseMenu.IsGamePaused)
+        {
+            Time.timeScale = 1f;
+        }
 
         // Allow shooting again
         weaponSystem.canShoot = true;
