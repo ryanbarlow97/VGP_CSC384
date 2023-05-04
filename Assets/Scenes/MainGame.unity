@@ -1924,6 +1924,9 @@ MonoBehaviour:
   - {fileID: 2952009545824456217, guid: e0b09b519217b2e4cbad6e1e1fae8399, type: 3}
   - {fileID: 2952009545824456217, guid: c216129a482d3bd48a6c0ece30edbbc6, type: 3}
   - {fileID: 2952009545824456217, guid: 56d18ba642e8a3c47b800e0f4b5cf864, type: 3}
+  powerUpPrefab:
+  - {fileID: 1296475435092820513, guid: e2123db1a0873cb45bbaf23e79fc063b, type: 3}
+  - {fileID: 1556429613690025366, guid: 78ffa1872b25d484db183640249ef473, type: 3}
 --- !u!4 &775311027
 Transform:
   m_ObjectHideFlags: 0
@@ -5280,8 +5283,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originalText: {fileID: 1662329778}
-  livesCounter: {fileID: 2110317404}
   player: {fileID: 330402266}
+  livesCounter: {fileID: 2110317404}
 --- !u!1 &1730861728
 GameObject:
   m_ObjectHideFlags: 0

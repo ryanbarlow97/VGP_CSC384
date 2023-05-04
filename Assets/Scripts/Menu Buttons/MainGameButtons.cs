@@ -54,7 +54,8 @@ public class MainGameButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
             playerPosition = SerializableVector3.FromVector3(player.transform.position),
             playerRotation = SerializableVector3.FromVector3(player.transform.eulerAngles),
             meteorDataList = GetMeteorDataList(),
-            smallMeteorDataList = GetSmallMeteorDataList()
+            smallMeteorDataList = GetSmallMeteorDataList(),
+            powerUpDataList = GetPowerUpDataList()
         };
 
         return currentSaveData;
@@ -111,6 +112,47 @@ public class MainGameButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
 
         return smallMeteorDataList;
+    }
+
+    private List<PowerUpData> GetPowerUpDataList()
+    {
+        List<PowerUpData> powerUpDataList = new List<PowerUpData>();
+        GameObject[] powerUps = GameObject.FindGameObjectsWithTag("SpeedPowerUp") 
+                                    .Concat(GameObject.FindGameObjectsWithTag("TripleFireRatePowerUp"))
+                                    .ToArray();
+
+        foreach (GameObject powerUp in powerUps)
+        {
+            Rigidbody2D powerUpRigidbody = powerUp.GetComponent<Rigidbody2D>();
+            if (powerUpRigidbody != null)
+            {
+                PowerUpData powerUpData = new PowerUpData
+                {
+                    powerUpType = GetPowerUpType(powerUp),
+                    position = SerializableVector3.FromVector3(powerUp.transform.position),
+                    velocity = SerializableVector3.FromVector3(powerUpRigidbody.velocity),
+                    scale = SerializableVector3.FromVector3(powerUp.transform.localScale),
+                };
+                powerUpDataList.Add(powerUpData);
+            }
+        }
+
+        return powerUpDataList;
+    }
+
+    private int GetPowerUpType(GameObject powerUp)
+    {
+        int powerUpType = 0;
+
+        if (powerUp.CompareTag("SpeedPowerUp"))
+        {
+            powerUpType = 0;
+        }
+        else if (powerUp.CompareTag("TripleFireRatePowerUp"))
+        {
+            powerUpType = 1;
+        }
+        return powerUpType;
     }
 
     private int GetMeteorType(GameObject smallMeteor)

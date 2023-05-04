@@ -11,6 +11,7 @@ public class MainGameLoader : MonoBehaviour
     private int playerHearts;
     public GameObject meteorPrefab;
     public GameObject[] smallMeteorPrefab;
+    public GameObject[] powerUpPrefab;
 
     private void Start()
     {
@@ -61,6 +62,19 @@ public class MainGameLoader : MonoBehaviour
                 meteor.GetComponent<Rigidbody2D>().velocity = velocity;
                 meteor.GetComponent<Rigidbody2D>().angularVelocity = angularVelocity;
                 meteor.transform.localScale = scale;
+            }
+
+            // Spawn the powerups
+            foreach (PowerUpData powerUpData in savedData.powerUpDataList)
+            {
+                int powerUpType = powerUpData.powerUpType;
+                Vector3 position = powerUpData.position.ToVector3();
+                Vector3 velocity = powerUpData.velocity.ToVector3();
+                Vector3 scale = powerUpData.scale.ToVector3();
+
+                GameObject powerUp = Instantiate(powerUpPrefab[powerUpType], position, Quaternion.identity);
+                powerUp.GetComponent<Rigidbody2D>().velocity = velocity;
+                powerUp.transform.localScale = scale;
             }
         }
     }

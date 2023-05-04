@@ -12,6 +12,7 @@ public class SaveData
     public SerializableVector3 playerRotation;
     public List<MeteorData> meteorDataList = new List<MeteorData>();
     public List<SmallMeteorData> smallMeteorDataList = new List<SmallMeteorData>();
+    public List<PowerUpData> powerUpDataList = new List<PowerUpData>();
 
 }
 
@@ -30,4 +31,12 @@ public class SmallMeteorData {
     public SerializableVector3 scale;
     public SerializableVector3 rotation;
     public SerializableFloat angularVelocity;
+}
+
+[System.Serializable]
+public class PowerUpData {
+    public int powerUpType;
+    public SerializableVector3 position;
+    public SerializableVector3 velocity;
+    public SerializableVector3 scale;
 }

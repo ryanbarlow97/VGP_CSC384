@@ -19,6 +19,7 @@ public class UserDetailsInput : MonoBehaviour
     private void Awake()
     {
         confirmButton.onClick.AddListener(ConfirmName);
+        cancelButton.onClick.AddListener(CancelNameInput);
         gameObject.SetActive(false);
     }
 
@@ -44,13 +45,15 @@ public class UserDetailsInput : MonoBehaviour
             SaveManager.Save(data, selectedSlotNumber);
             saveSlotManager.UpdateSaveSlotButtons();
 
-
-            // Switch back to the save slot canvas
-            nameInputPanel.SetActive(false);
-            saveSlotCanvas.SetActive(true);
-
             SceneManager.LoadScene("MainGame");
-
         }
+    }
+
+
+    public void CancelNameInput()
+    {
+        nameInputPanel.SetActive(false);
+        saveSlotCanvas.SetActive(true);
+        
     }
 }

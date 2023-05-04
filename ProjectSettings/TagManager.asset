@@ -11,6 +11,8 @@ TagManager:
   - MeteorSmallBR
   - MeteorSmallTL
   - MeteorSmallTR
+  - SpeedPowerUp
+  - TripleFireRatePowerUp
   layers:
   - Default
   - TransparentFX

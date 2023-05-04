@@ -568,7 +568,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Cancel
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dcb4f4664271f5f4b886fa39d00b3133, type: 2}
   m_sharedMaterial: {fileID: 952198864837781027, guid: dcb4f4664271f5f4b886fa39d00b3133, type: 2}
@@ -1426,7 +1426,7 @@ MonoBehaviour:
   confirmButton: {fileID: 1724955604}
   cancelButton: {fileID: 1434567783}
   saveSlotManager: {fileID: 1226029488}
-  saveSlotCanvas: {fileID: 1173368509}
+  saveSlotCanvas: {fileID: 1226029483}
   nameInputPanel: {fileID: 996286958}
 --- !u!1 &1095501075
 GameObject:
@@ -1765,7 +1765,7 @@ GameObject:
   - component: {fileID: 1173368511}
   - component: {fileID: 1173368510}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: CreateCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1867,7 +1867,7 @@ GameObject:
   - component: {fileID: 1226029484}
   - component: {fileID: 1226029488}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: LoadCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2419,7 +2419,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Confirm
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dcb4f4664271f5f4b886fa39d00b3133, type: 2}
   m_sharedMaterial: {fileID: 952198864837781027, guid: dcb4f4664271f5f4b886fa39d00b3133, type: 2}
