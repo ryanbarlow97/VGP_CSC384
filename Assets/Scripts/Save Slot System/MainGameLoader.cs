@@ -13,9 +13,10 @@ public class MainGameLoader : MonoBehaviour
     public GameObject[] smallMeteorPrefab;
     public GameObject[] powerUpPrefab;
 
+    public int saveSlotNumber = 1;
+
     private void Start()
     {
-        int saveSlotNumber = 1;
 
         // Load the game data from the specified save slot
         SaveData savedData = SaveManager.Load(saveSlotNumber);

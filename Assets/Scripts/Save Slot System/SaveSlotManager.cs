@@ -28,7 +28,16 @@ public class SaveSlotManager : MonoBehaviour
         if (SaveManager.SaveExists(slotNumber))
         {
             // Load the main game scene.
-            SceneManager.LoadScene("MainGame");
+            // Pass the save slot number to the MainGameLoader script in the next scene
+            SceneManager.LoadScene("MainGame", LoadSceneMode.Single);
+            SceneManager.sceneLoaded += (loadedScene, mode) =>
+            {
+                MainGameLoader mainGameLoader = FindObjectOfType<MainGameLoader>();
+                if (mainGameLoader != null)
+                {
+                    mainGameLoader.saveSlotNumber = slotNumber;
+                }
+            };
         }
         else
         {

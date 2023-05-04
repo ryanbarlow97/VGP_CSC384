@@ -13,10 +13,15 @@ public class MainGameButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [SerializeField] private LivesCounter livesCounter;
 
     private Color originalColor;
-    private int saveSlotNumber = 1;
+    private int saveSlotNumber;
 
     private void Start()
     {
+        MainGameLoader mainGameLoader = FindObjectOfType<MainGameLoader>();
+        if (mainGameLoader != null)
+        {
+            saveSlotNumber = mainGameLoader.saveSlotNumber;
+        }
         originalColor = originalText.color;
     }
 
