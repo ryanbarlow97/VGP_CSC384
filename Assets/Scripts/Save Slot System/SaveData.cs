@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class SaveData
 {
     public string playerName;
-    public int playerLevel;
     public int playerScore;
     public int playerHearts;
     public SerializableVector3 playerPosition;

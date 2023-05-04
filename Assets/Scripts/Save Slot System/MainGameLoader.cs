@@ -6,7 +6,6 @@ public class MainGameLoader : MonoBehaviour
 {
     public GameObject player;
     public TextMeshProUGUI playerNameText;
-    private int playerLevel;
     private int playerScore;
     private int playerHearts;
     public GameObject meteorPrefab;
@@ -26,8 +25,6 @@ public class MainGameLoader : MonoBehaviour
         {
             // Set the player name
             playerNameText.text = savedData.playerName;
-            // Set the player level
-            playerLevel = savedData.playerLevel;
             // Get the current score
             playerScore = savedData.playerScore;
             //Get the remaining hearts

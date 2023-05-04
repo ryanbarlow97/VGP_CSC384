@@ -61,7 +61,7 @@ public class SaveSlotManager : MonoBehaviour
     {
         if (SaveManager.SaveExists(slotNumber))
         {
-            slotButton.GetComponentInChildren<TextMeshProUGUI>().text = $"{SaveManager.Load(slotNumber).playerName} \n \n Level: {SaveManager.Load(slotNumber).playerLevel} \n Score: {SaveManager.Load(slotNumber).playerScore}";
+            slotButton.GetComponentInChildren<TextMeshProUGUI>().text = $"{SaveManager.Load(slotNumber).playerName} \n \n Hearts: {SaveManager.Load(slotNumber).playerHearts} \n Score: {SaveManager.Load(slotNumber).playerScore}";
         }
         else
         {

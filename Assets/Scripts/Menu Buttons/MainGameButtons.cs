@@ -53,7 +53,6 @@ public class MainGameButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
         SaveData currentSaveData = new SaveData
         {
             playerName = savedData.playerName,
-            playerLevel = 1,
             playerScore = 20,
             playerHearts = livesCounter.GetLives(),
             playerPosition = SerializableVector3.FromVector3(player.transform.position),

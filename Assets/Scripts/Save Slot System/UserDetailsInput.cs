@@ -36,7 +36,6 @@ public class UserDetailsInput : MonoBehaviour
         {
             SaveData data = new SaveData();
             data.playerName = nameInputField.text;
-            data.playerLevel = 1;
             data.playerScore = 0;
             data.playerHearts = 3;
             data.playerPosition = new SerializableVector3(0, 0, 0);
