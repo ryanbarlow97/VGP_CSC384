@@ -18,13 +18,18 @@ public class LivesCounter : MonoBehaviour
     public AudioClip gameOver;
     private ICommand playHeathLossSoundCommand;
     private ICommand playGameOverSoundCommand;
+
+    private int saveSlotNumber;
     private void Start()
     {
-        
+        MainGameLoader mainGameLoader = FindObjectOfType<MainGameLoader>();
+        if (mainGameLoader != null)
+        {
+            saveSlotNumber = mainGameLoader.saveSlotNumber;
+        }
         playHeathLossSoundCommand = new PlaySoundCommand(this, healthLoss);
         playGameOverSoundCommand = new PlaySoundCommand(this, gameOver);
 
-        int saveSlotNumber = 1;
         SaveData saveData = SaveManager.Load(saveSlotNumber);
         if (saveData != null)
         {
@@ -35,6 +40,7 @@ public class LivesCounter : MonoBehaviour
             lives = startingLives;
         }
         UpdateLivesText();
+        StartCoroutine(ReloadPlayer());
     }
 
     public void PlayerHit()
@@ -97,5 +103,31 @@ public class LivesCounter : MonoBehaviour
     public int GetLives()
     {
         return lives;
+    }
+
+
+    private IEnumerator ReloadPlayer()
+    {
+        // Disallow shooting
+        WeaponSystem weaponSystem = playerShip.GetComponent<WeaponSystem>();
+        weaponSystem.canShoot = false;
+
+        // Freeze the game for 3 seconds
+        Time.timeScale = 0;
+
+        // Apply flashing color effect
+        for (int i = 0; i < 10; i++)
+        {
+            playerSpriteRenderer.color = flashColor;
+            yield return new WaitForSecondsRealtime(flashDuration);
+            playerSpriteRenderer.color = Color.white;
+            yield return new WaitForSecondsRealtime(flashDuration);
+        }
+
+        // Unfreeze the game
+        Time.timeScale = 1;
+
+        // Allow shooting again
+        weaponSystem.canShoot = true;
     }
 }

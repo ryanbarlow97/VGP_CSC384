@@ -41,11 +41,17 @@ public class UserDetailsInput : MonoBehaviour
             data.playerHearts = 3;
             data.playerPosition = new SerializableVector3(0, 0, 0);
             data.playerRotation = new SerializableVector3(0, 0, 0);
-
             SaveManager.Save(data, selectedSlotNumber);
-            saveSlotManager.UpdateSaveSlotButtons();
 
             SceneManager.LoadScene("MainGame");
+            SceneManager.sceneLoaded += (loadedScene, mode) =>
+            {
+                MainGameLoader mainGameLoader = FindObjectOfType<MainGameLoader>();
+                if (mainGameLoader != null)
+                {
+                    mainGameLoader.saveSlotNumber = selectedSlotNumber;
+                }
+            };
         }
     }
 

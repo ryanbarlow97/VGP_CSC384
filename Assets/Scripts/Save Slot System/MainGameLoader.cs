@@ -17,6 +17,7 @@ public class MainGameLoader : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log(saveSlotNumber);
 
         // Load the game data from the specified save slot
         SaveData savedData = SaveManager.Load(saveSlotNumber);
