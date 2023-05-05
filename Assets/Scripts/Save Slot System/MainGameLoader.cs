@@ -12,10 +12,16 @@ public class MainGameLoader : MonoBehaviour
     public GameObject[] smallMeteorPrefab;
     public GameObject[] powerUpPrefab;
 
+    private float survivalTime;
+    private int meteorsDestroyed;
+    private int powerupsCollected;
+
     public int saveSlotNumber = 1;
+    private GameSession gameSession; 
 
     private void Start()
     {
+        gameSession = FindObjectOfType<GameSession>();
         // Load the game data from the specified save slot
         SaveData savedData = SaveManager.Load(saveSlotNumber);
 
@@ -23,11 +29,23 @@ public class MainGameLoader : MonoBehaviour
         {
             // Set the player name
             playerNameText.text = savedData.playerName;
+            gameSession.SetPlayerName(savedData.playerName);
+
             // Get the current score
             playerScore = savedData.playerScore;
             //Get the remaining hearts
             playerHearts = savedData.playerHearts;
 
+
+            survivalTime = savedData.survivalTime;
+            meteorsDestroyed = savedData.meteorsDestroyed;
+            powerupsCollected = savedData.powerupsCollected;
+            
+            gameSession.SetSaveSlotNumber(saveSlotNumber);
+            gameSession.SetSurvivalTime(survivalTime);
+            gameSession.SetMeteorsDestroyed(meteorsDestroyed);
+            gameSession.SetPowerupsCollected(powerupsCollected);
+            
             // Set the player position and rotation
             player.transform.position = savedData.playerPosition.ToVector3();
             player.transform.eulerAngles = savedData.playerRotation.ToVector3();

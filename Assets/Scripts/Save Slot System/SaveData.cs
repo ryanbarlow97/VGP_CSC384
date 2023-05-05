@@ -12,6 +12,9 @@ public class SaveData
     public List<MeteorData> meteorDataList = new List<MeteorData>();
     public List<SmallMeteorData> smallMeteorDataList = new List<SmallMeteorData>();
     public List<PowerUpData> powerUpDataList = new List<PowerUpData>();
+    public float survivalTime;
+    public int meteorsDestroyed;
+    public int powerupsCollected;
 
 }
 

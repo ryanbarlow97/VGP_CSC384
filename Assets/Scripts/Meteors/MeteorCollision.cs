@@ -8,10 +8,13 @@ public class MeteorCollision : MonoBehaviour
     public AudioClip meteorExplosion;
     private ICommand playMeteorSoundCommand;
 
+    private GameSession gameSession;
+
     private void Start()
     {
         livesCounter = FindObjectOfType<LivesCounter>();
         playMeteorSoundCommand = new PlaySoundCommand(livesCounter, meteorExplosion);
+        gameSession = FindObjectOfType<GameSession>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -40,6 +43,8 @@ public class MeteorCollision : MonoBehaviour
 
             // Destroy explosion after 1.25 seconds
             Destroy(newExplosion, 0.8f);
+
+            gameSession.IncrementMeteorsDestroyed();
         }
 
         if (other.CompareTag("PlayerShip"))

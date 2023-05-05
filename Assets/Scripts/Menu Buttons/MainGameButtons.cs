@@ -11,6 +11,7 @@ public class MainGameButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [SerializeField] private TextMeshProUGUI originalText;
     [SerializeField] private GameObject player;
     [SerializeField] private LivesCounter livesCounter;
+    private GameSession gameSession;
 
     private Color originalColor;
     private int saveSlotNumber;
@@ -23,6 +24,7 @@ public class MainGameButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
             saveSlotNumber = mainGameLoader.saveSlotNumber;
         }
         originalColor = originalText.color;
+        gameSession = FindObjectOfType<GameSession>();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -38,6 +40,7 @@ public class MainGameButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void OnBackButtonPressed()
     {
         SaveGameData();
+        Destroy(gameSession.gameObject);
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -59,7 +62,11 @@ public class MainGameButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
             playerRotation = SerializableVector3.FromVector3(player.transform.eulerAngles),
             meteorDataList = GetMeteorDataList(),
             smallMeteorDataList = GetSmallMeteorDataList(),
-            powerUpDataList = GetPowerUpDataList()
+            powerUpDataList = GetPowerUpDataList(),
+
+            survivalTime = gameSession.SurvivalTime,
+            meteorsDestroyed = gameSession.MeteorsDestroyed,
+            powerupsCollected = gameSession.PowerupsCollected
         };
 
         return currentSaveData;

@@ -13,6 +13,7 @@ public class PowerUpManager : MonoBehaviour
     [SerializeField] private Image tripleFireRatePowerUpImage;
     [SerializeField] private Image RemainingTinmeBar;
     private Queue<IEnumerator> powerUpQueue = new Queue<IEnumerator>();
+    private GameSession gameSession;
 
     private void Update()
     {
@@ -27,6 +28,7 @@ public class PowerUpManager : MonoBehaviour
         eventManager = FindObjectOfType<PowerUpEventManager>();
         eventManager.StartListening("SpeedPowerUp", ActivateSpeedPowerUp);
         eventManager.StartListening("TripleFireRatePowerUp", ActivateTripleFireRatePowerUp);
+        gameSession = FindObjectOfType<GameSession>();
     }
 
     private void OnDestroy()
@@ -46,6 +48,7 @@ public class PowerUpManager : MonoBehaviour
     private IEnumerator ApplyTemporarySpeedPowerUp(SpeedPowerUp speedPowerUp)
     {
         speedPowerUpActive = true;
+        gameSession.IncrementPowerupsCollected();
         PlayerMovement playerMovement = GetComponent<PlayerMovement>();
 
         playerMovement.acceleration *= speedPowerUp.speedMultiplier;
@@ -82,6 +85,7 @@ public class PowerUpManager : MonoBehaviour
     private IEnumerator ApplyTemporaryTripleFireRatePowerUp(TripleFireRatePowerUp tripleFireRatePowerUp)
     {
         tripleFireRatePowerUpActive = true;
+        gameSession.IncrementPowerupsCollected();
         WeaponSystem weaponSystem = GetComponent<WeaponSystem>();
 
         weaponSystem.fireRate /= tripleFireRatePowerUp.fireRateMultiplier;

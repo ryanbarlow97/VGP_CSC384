@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LivesCounter : MonoBehaviour
 {
@@ -9,7 +10,6 @@ public class LivesCounter : MonoBehaviour
     [SerializeField] private SpriteRenderer playerSpriteRenderer;
     [SerializeField] private Color flashColor = Color.red;
     [SerializeField] private float flashDuration = 0.1f;
-    [SerializeField] private int startingLives = 3;
     [SerializeField] private GameObject explosionPrefab;
     public PauseMenu pauseMenu;
     public AudioClip healthLoss;
@@ -18,27 +18,24 @@ public class LivesCounter : MonoBehaviour
     private ICommand playGameOverSoundCommand;
     private int saveSlotNumber;
     private float invincibilityDuration = 1.0f;
-    private bool isInvincible = false;    private int lives;
+    private bool isInvincible = false;  
+    private int lives;
+    private GameSession gameSession;
+
+    private SaveData saveData;
+
 
     private void Start()
     {
-        MainGameLoader mainGameLoader = FindObjectOfType<MainGameLoader>();
-        if (mainGameLoader != null)
-        {
-            saveSlotNumber = mainGameLoader.saveSlotNumber;
-        }
+        GameSession gameSession = FindObjectOfType<GameSession>();
+        saveSlotNumber = gameSession.SaveSlotNumber;
         playHeathLossSoundCommand = new PlaySoundCommand(this, healthLoss);
         playGameOverSoundCommand = new PlaySoundCommand(this, gameOver);
 
-        SaveData saveData = SaveManager.Load(saveSlotNumber);
-        if (saveData != null)
-        {
-            lives = saveData.playerHearts;
-        }
-        else
-        {
-            lives = startingLives;
-        }
+        saveData = SaveManager.Load(saveSlotNumber);
+
+        lives = saveData.playerHearts;
+        
         UpdateLivesText();
         StartCoroutine(ReloadPlayer());
     }
@@ -62,6 +59,7 @@ public class LivesCounter : MonoBehaviour
             lives--;
             UpdateLivesText();
             playGameOverSoundCommand.Execute();
+            GameOver();
         }
     }
 
@@ -148,5 +146,10 @@ public class LivesCounter : MonoBehaviour
     {
         yield return new WaitForSeconds(invincibilityDuration);
         isInvincible = false;
+    }
+
+    private void GameOver()
+    {
+        SceneManager.LoadScene("EndGame");
     }
 }

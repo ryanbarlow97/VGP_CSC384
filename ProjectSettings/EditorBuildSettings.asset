@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SaveSlots.unity
     guid: 27e86170237eb2c418b0c099be096b32
+  - enabled: 1
+    path: Assets/Scenes/EndGame.unity
+    guid: eda33c3d50654c543b4c92ff4b503f0b
   m_configObjects: {}
