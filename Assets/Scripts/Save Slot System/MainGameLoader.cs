@@ -30,21 +30,14 @@ public class MainGameLoader : MonoBehaviour
             // Set the player name
             playerNameText.text = savedData.playerName;
             gameSession.SetPlayerName(savedData.playerName);
-
             // Get the current score
             playerScore = savedData.playerScore;
             //Get the remaining hearts
             playerHearts = savedData.playerHearts;
-
-
-            survivalTime = savedData.survivalTime;
-            meteorsDestroyed = savedData.meteorsDestroyed;
-            powerupsCollected = savedData.powerupsCollected;
-            
             gameSession.SetSaveSlotNumber(saveSlotNumber);
-            gameSession.SetSurvivalTime(survivalTime);
-            gameSession.SetMeteorsDestroyed(meteorsDestroyed);
-            gameSession.SetPowerupsCollected(powerupsCollected);
+            gameSession.SetTotalPlayTime(savedData.survivalTime);
+            gameSession.SetMeteorsDestroyed(savedData.meteorsDestroyed);
+            gameSession.SetPowerupsCollected(savedData.powerupsCollected);
             
             // Set the player position and rotation
             player.transform.position = savedData.playerPosition.ToVector3();

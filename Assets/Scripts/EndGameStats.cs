@@ -27,7 +27,7 @@ public class EndGameStats : MonoBehaviour
         saveSlotNumber = gameSession.SaveSlotNumber;
         
         playerName = gameSession.PlayerName;
-        survivalTime = gameSession.SurvivalTime;
+        survivalTime = gameSession.GetCurrentPlayTime();
         meteorsDestroyed = gameSession.MeteorsDestroyed;
         powerupsCollected = gameSession.PowerupsCollected;
 

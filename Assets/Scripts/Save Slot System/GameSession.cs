@@ -5,6 +5,9 @@ public class GameSession : MonoBehaviour
     // Survival time
     public float SurvivalTime { get; private set; }
 
+    // Total play time
+    public float TotalPlayTime { get; private set; }
+
     // Meteors destroyed
     public int MeteorsDestroyed { get; private set; }
 
@@ -19,11 +22,6 @@ public class GameSession : MonoBehaviour
 
     private void Start()
     {
-        PlayerName = "Player";
-        SaveSlotNumber = 1;
-        SurvivalTime = 0;
-        MeteorsDestroyed = 0;
-        PowerupsCollected = 0;
         DontDestroyOnLoad(this.gameObject);
     }
     private void Update()
@@ -31,10 +29,16 @@ public class GameSession : MonoBehaviour
         SurvivalTime += Time.deltaTime ;
     }
 
-    public void SetSurvivalTime(float time)
+    public void SetTotalPlayTime(float time)
     {
-        SurvivalTime = time;
+        TotalPlayTime = time;
     }
+
+    public float GetCurrentPlayTime()
+    {
+        return TotalPlayTime + SurvivalTime;
+    }
+
 
     public void SetMeteorsDestroyed(int meteors)
     {
@@ -49,13 +53,11 @@ public class GameSession : MonoBehaviour
     public void IncrementMeteorsDestroyed()
     {
         MeteorsDestroyed++;
-        Debug.Log("Meteors destroyed: " + MeteorsDestroyed);
     }
 
     public void IncrementPowerupsCollected()
     {
         PowerupsCollected++;
-        Debug.Log("Powerups collected: " + PowerupsCollected);
     }
 
     public void SetPlayerName(string name)

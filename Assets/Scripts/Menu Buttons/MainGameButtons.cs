@@ -39,9 +39,10 @@ public class MainGameButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnBackButtonPressed()
     {
+        
         SaveGameData();
-        Destroy(gameSession.gameObject);
         SceneManager.LoadScene("MainMenu");
+        Destroy(gameSession.gameObject);
     }
 
     private void SaveGameData()
@@ -64,11 +65,14 @@ public class MainGameButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
             smallMeteorDataList = GetSmallMeteorDataList(),
             powerUpDataList = GetPowerUpDataList(),
 
-            survivalTime = gameSession.SurvivalTime,
+            survivalTime = gameSession.GetCurrentPlayTime(),
             meteorsDestroyed = gameSession.MeteorsDestroyed,
+            
             powerupsCollected = gameSession.PowerupsCollected
         };
-
+        Debug.Log("Survival Time: " + currentSaveData.survivalTime);
+        Debug.Log("Meteors Destroyed: " + currentSaveData.meteorsDestroyed);
+        Debug.Log("Powerups Collected: " + currentSaveData.powerupsCollected);
         return currentSaveData;
     }
 
