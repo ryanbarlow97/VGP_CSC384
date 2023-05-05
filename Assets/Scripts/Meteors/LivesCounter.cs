@@ -17,7 +17,8 @@ public class LivesCounter : MonoBehaviour
     private ICommand playHeathLossSoundCommand;
     private ICommand playGameOverSoundCommand;
     private int saveSlotNumber;
-    private int lives;
+    private float invincibilityDuration = 1.0f;
+    private bool isInvincible = false;    private int lives;
 
     private void Start()
     {
@@ -44,6 +45,11 @@ public class LivesCounter : MonoBehaviour
 
     public void PlayerHit()
     {
+        if (isInvincible)
+        {
+            return;
+        }
+
         if (lives > 1)
         {
             lives--;
@@ -66,6 +72,7 @@ public class LivesCounter : MonoBehaviour
 
     private IEnumerator RespawnPlayer()
     {
+        isInvincible = true;
         // Teleport the player back to the middle
         playerShip.transform.position = Vector3.zero;
 
@@ -96,10 +103,13 @@ public class LivesCounter : MonoBehaviour
         if (!pauseMenu.IsGamePaused)
         {
             Time.timeScale = 1f;
-        }
+           
 
+        }
+        StartCoroutine(InvincibilityTimer());
         // Allow shooting again
         weaponSystem.canShoot = true;
+
     }
 
     public int GetLives()
@@ -133,5 +143,10 @@ public class LivesCounter : MonoBehaviour
 
         // Allow shooting again
         weaponSystem.canShoot = true;
+    }
+    private IEnumerator InvincibilityTimer()
+    {
+        yield return new WaitForSeconds(invincibilityDuration);
+        isInvincible = false;
     }
 }
