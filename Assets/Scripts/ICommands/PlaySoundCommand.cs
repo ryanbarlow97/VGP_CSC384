@@ -6,6 +6,7 @@ public class PlaySoundCommand : ICommand
     private AudioClip clip;
     private MonoBehaviour monoBehaviour;
     private AudioSource audioSource;
+    private GameObject audioSourceObject;
     private bool loop;
 
 
@@ -18,7 +19,7 @@ public class PlaySoundCommand : ICommand
 
     public void Execute()
     {
-        GameObject audioSourceObject = new GameObject("AudioSourceObject");
+        audioSourceObject = new GameObject("AudioSourceObject");
         audioSource = audioSourceObject.AddComponent<AudioSource>();
         audioSource.clip = clip;
         audioSource.volume = 1.0f;
@@ -26,17 +27,7 @@ public class PlaySoundCommand : ICommand
         audioSource.Play();
         if (!loop)
         {
-            monoBehaviour.StartCoroutine(DestroyAfterPlaying());
-        }
-    }
-
-    private IEnumerator DestroyAfterPlaying()
-    {
-        yield return new WaitForSeconds(clip.length+0.2f);
-
-        if (audioSource != null)
-        {
-            Object.Destroy(audioSource.gameObject);
+            Object.Destroy(audioSourceObject, clip.length+0.2f);
         }
     }
 }

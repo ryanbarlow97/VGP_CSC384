@@ -18,44 +18,45 @@ public class MeteorSpawner : MonoBehaviour
     {
         while (true)
         {
-            Vector3 spawnPosition = Vector3.zero;
-            Quaternion spawnRotation = Quaternion.identity;
+            if (!FindObjectOfType<TimeRewinder>().isRewinding) {
+                Vector3 spawnPosition = Vector3.zero;
+                Quaternion spawnRotation = Quaternion.identity;
 
-            // Choose a random edge: 0 = Top, 1 = Bottom, 2 = Left, 3 = Right
-            int randomEdge = Random.Range(0, 4);
+                // Choose a random edge: 0 = Top, 1 = Bottom, 2 = Left, 3 = Right
+                int randomEdge = Random.Range(0, 4);
 
-            float screenLeft = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, mainCamera.nearClipPlane)).x;
-            float screenRight = mainCamera.ViewportToWorldPoint(new Vector3(1, 0, mainCamera.nearClipPlane)).x;
-            float screenBottom = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, mainCamera.nearClipPlane)).y;
-            float screenTop = mainCamera.ViewportToWorldPoint(new Vector3(0, 1, mainCamera.nearClipPlane)).y;
+                float screenLeft = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, mainCamera.nearClipPlane)).x;
+                float screenRight = mainCamera.ViewportToWorldPoint(new Vector3(1, 0, mainCamera.nearClipPlane)).x;
+                float screenBottom = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, mainCamera.nearClipPlane)).y;
+                float screenTop = mainCamera.ViewportToWorldPoint(new Vector3(0, 1, mainCamera.nearClipPlane)).y;
 
-            switch (randomEdge)
-            {
-                case 0: // Top
-                    spawnPosition = new Vector3(Random.Range(screenLeft, screenRight), screenTop, 0f);
-                    break;
-                case 1: // Bottom
-                    spawnPosition = new Vector3(Random.Range(screenLeft, screenRight), screenBottom, 0f);
-                    break;
-                case 2: // Left
-                    spawnPosition = new Vector3(screenLeft, Random.Range(screenBottom, screenTop), 0f);
-                    break;
-                case 3: // Right
-                    spawnPosition = new Vector3(screenRight, Random.Range(screenBottom, screenTop), 0f);
-                    break;
+                switch (randomEdge)
+                {
+                    case 0: // Top
+                        spawnPosition = new Vector3(Random.Range(screenLeft, screenRight), screenTop, 0f);
+                        break;
+                    case 1: // Bottom
+                        spawnPosition = new Vector3(Random.Range(screenLeft, screenRight), screenBottom, 0f);
+                        break;
+                    case 2: // Left
+                        spawnPosition = new Vector3(screenLeft, Random.Range(screenBottom, screenTop), 0f);
+                        break;
+                    case 3: // Right
+                        spawnPosition = new Vector3(screenRight, Random.Range(screenBottom, screenTop), 0f);
+                        break;
+                }
+
+                // Instantiate the meteor
+                GameObject meteor = Instantiate(meteorPrefab, spawnPosition, spawnRotation);
+
+                float scale = Random.Range(1f, 2f); // Random scale between 1 and 2
+                meteorPrefab.transform.localScale = new Vector3(scale, scale, 1); // Set the meteor's scale
+
+                // Calculate the meteor's velocity
+                Vector2 meteorDirection = GetSpawnDirection(spawnPosition);
+                Rigidbody2D meteorRigidbody = meteor.GetComponent<Rigidbody2D>();
+                meteorRigidbody.velocity = meteorDirection * Random.Range(1f, 4f);
             }
-
-            // Instantiate the meteor
-            GameObject meteor = Instantiate(meteorPrefab, spawnPosition, spawnRotation);
-
-            float scale = Random.Range(1f, 2f); // Random scale between 1 and 2
-            meteorPrefab.transform.localScale = new Vector3(scale, scale, 1); // Set the meteor's scale
-
-            // Calculate the meteor's velocity
-            Vector2 meteorDirection = GetSpawnDirection(spawnPosition);
-            Rigidbody2D meteorRigidbody = meteor.GetComponent<Rigidbody2D>();
-            meteorRigidbody.velocity = meteorDirection * Random.Range(1f, 4f);
-
             yield return new WaitForSeconds(spawnRate);
         }
     }
