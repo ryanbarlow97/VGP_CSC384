@@ -29,9 +29,6 @@ public class TimeRewinder : MonoBehaviour
 
     public void Rewind()
     {
-        
-
-
         if (meteorStates.Any())
         {
             ApplyState(meteorStates, meteors);
@@ -99,8 +96,6 @@ public class TimeRewinder : MonoBehaviour
         }
     }
 
-
-
     private void SaveState()
     {
         meteors = GameObject.FindGameObjectsWithTag("MeteorLarge");
@@ -118,8 +113,6 @@ public class TimeRewinder : MonoBehaviour
         bullets = GameObject.FindGameObjectsWithTag("Bullet");
 
         playerShip = GameObject.FindWithTag("PlayerShip");
-
-
 
         if (meteors != null)
         {
@@ -143,7 +136,6 @@ public class TimeRewinder : MonoBehaviour
         }
     }
 
-
     private PointInTime GetState(GameObject[] gameObjects)
     {
         List<GameObjectState> gameObjectStates = new List<GameObjectState>();
@@ -164,8 +156,6 @@ public class TimeRewinder : MonoBehaviour
         }
         return new PointInTime(gameObjectStates);
     }
-
-
 }
 
 public class GameObjectState
