@@ -30,53 +30,38 @@ public class TimeRewinder : MonoBehaviour
     public void Rewind()
     {
         
-        bool anyRewind = false;
-        if (rewindElapsedTime < maxRewindTime)
-        {
 
-            if (meteorStates.Any())
-            {
-                ApplyState(meteorStates, meteors);
-                meteorStates.RemoveAt(meteorStates.Count - 1);
-                anyRewind = true;
-            }
-            if (smallMeteorStates.Any())
-            {
-                ApplyState(smallMeteorStates, smallMeteors);
-                smallMeteorStates.RemoveAt(smallMeteorStates.Count - 1);
-                anyRewind = true;
-            }
-            if (powerUpStates.Any())
-            {
-                ApplyState(powerUpStates, powerUps);
-                powerUpStates.RemoveAt(powerUpStates.Count - 1);
-                anyRewind = true;
-            }
-            if (bulletStates.Any())
-            {
-                ApplyState(bulletStates, bullets);
-                bulletStates.RemoveAt(bulletStates.Count - 1);
-                anyRewind = true;
-            }           
-            if (playerShipStates.Any())
-            {
-                ApplyState(playerShipStates, new GameObject[] { playerShip });
-                playerShipStates.RemoveAt(playerShipStates.Count - 1);
-                anyRewind = true;
-            }
-            if (!anyRewind)
-            {
-                PauseGame();
-            }
-        }
-        else
+
+        if (meteorStates.Any())
         {
-            PauseGame();
+            ApplyState(meteorStates, meteors);
+            meteorStates.RemoveAt(meteorStates.Count - 1);
         }
+        if (smallMeteorStates.Any())
+        {
+            ApplyState(smallMeteorStates, smallMeteors);
+            smallMeteorStates.RemoveAt(smallMeteorStates.Count - 1);
+        }
+        if (powerUpStates.Any())
+        {
+            ApplyState(powerUpStates, powerUps);
+            powerUpStates.RemoveAt(powerUpStates.Count - 1);
+        }
+        if (bulletStates.Any())
+        {
+            ApplyState(bulletStates, bullets);
+            bulletStates.RemoveAt(bulletStates.Count - 1);
+        }           
+        if (playerShipStates.Any())
+        {
+            ApplyState(playerShipStates, new GameObject[] { playerShip });
+            playerShipStates.RemoveAt(playerShipStates.Count - 1);
+        }        
     }
-    private void PauseGame()
+    
+    public bool IsAnyRewind()
     {
-        Time.timeScale = 0;
+        return meteorStates.Any() || smallMeteorStates.Any() || powerUpStates.Any() || bulletStates.Any() || playerShipStates.Any();
     }
 
     private void ApplyState(List<PointInTime> pointsInTime, GameObject[] gameObjects)

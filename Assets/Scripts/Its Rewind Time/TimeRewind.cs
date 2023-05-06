@@ -59,12 +59,24 @@ public class TimeRewind : MonoBehaviour
     private IEnumerator RewindCoroutine()
     {
         float rewindStartTime = Time.time;
-        StartRewind();
-        while (Time.time - rewindStartTime < 3f)
+        float maxRewindDuration = 3f;
+
+        if (rewindStartTime < maxRewindDuration)
         {
+            maxRewindDuration = rewindStartTime;
+        }
+
+        StartRewind();
+        while (Time.time - rewindStartTime < maxRewindDuration)
+        {
+            if (!timeRewinder.IsAnyRewind())
+            {
+                break;
+            }
             yield return null;
         }
         StopRewind();
         Time.timeScale = 1;
     }
+
 }
