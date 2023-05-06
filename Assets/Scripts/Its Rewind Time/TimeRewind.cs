@@ -14,27 +14,14 @@ public class TimeRewind : MonoBehaviour
         timeRewinder = GetComponent<TimeRewinder>();
     }
 
-    private void Update()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            StartRewind();
-        }
-        if (Input.GetKeyUp(KeyCode.Z))
-        {
-            StopRewind();
-            Time.timeScale = 1;
-        }
-        
-        if (isRewinding)
-        {
-            timeRewinder.rewindElapsedTime += Time.deltaTime;
-        }
-        else
-        {
-            timeRewinder.rewindElapsedTime = 0;
+            TriggerRewind();
         }
     }
+
 
 
     private void FixedUpdate()
@@ -63,5 +50,21 @@ public class TimeRewind : MonoBehaviour
         timeRewinder.isRewinding = false;
         playerShip.GetComponent<PlayerMovement>().enabled = true;
         playerShip.GetComponent<WeaponSystem>().enabled = true;
+    }
+    public void TriggerRewind()
+    {
+        StartCoroutine(RewindCoroutine());
+    }
+
+    private IEnumerator RewindCoroutine()
+    {
+        float rewindStartTime = Time.time;
+        StartRewind();
+        while (Time.time - rewindStartTime < 3f)
+        {
+            yield return null;
+        }
+        StopRewind();
+        Time.timeScale = 1;
     }
 }
