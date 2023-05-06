@@ -47,6 +47,11 @@ public class MainGameButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     private void SaveGameData()
     {
+        ReplayManager replayManager = FindObjectOfType<ReplayManager>();
+        if (replayManager != null)
+        {
+            replayManager.SaveReplayToFile();
+        }
         SaveData savedData = SaveManager.Load(saveSlotNumber);
         SaveData currentSaveData = GetCurrentSaveData(savedData);
         SaveManager.Save(currentSaveData, saveSlotNumber);

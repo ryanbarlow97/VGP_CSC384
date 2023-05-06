@@ -6,6 +6,7 @@ using System.Linq;
 public class TimeRewinder : MonoBehaviour
 {
     public bool isRewinding;
+    private ReplayManager replayManager;
     private List<PointInTime> meteorStates = new List<PointInTime>();
     private List<PointInTime> smallMeteorStates = new List<PointInTime>();
     private List<PointInTime> powerUpStates = new List<PointInTime>();
@@ -18,9 +19,15 @@ public class TimeRewinder : MonoBehaviour
     private GameObject[] bullets;
     private GameObject playerShip;
 
-    public float maxRewindTime = 3f;
-    public float rewindElapsedTime = 0f;
+    private void Start()
+    {
+        replayManager = FindObjectOfType<ReplayManager>();
 
+        meteors = new GameObject[] { };
+        smallMeteors = new GameObject[] { };
+        powerUps = new GameObject[] { };
+        bullets = new GameObject[] { };
+    }
 
     public void Record()
     {
@@ -98,6 +105,16 @@ public class TimeRewinder : MonoBehaviour
 
     private void SaveState()
     {
+        if (replayManager != null)
+        {
+            replayManager.StoreFrameData(
+                GetState(meteors),
+                GetState(smallMeteors),
+                GetState(powerUps),
+                GetState(bullets),
+                GetState(new GameObject[] { playerShip }));
+        }
+
         meteors = GameObject.FindGameObjectsWithTag("MeteorLarge");
 
         smallMeteors = GameObject.FindGameObjectsWithTag("MeteorSmallBL")
