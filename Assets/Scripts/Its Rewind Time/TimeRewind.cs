@@ -105,6 +105,11 @@ public class TimeRewind : MonoBehaviour
         {
             pointsInTime.RemoveAt(pointsInTime.Count - 1);
         }
+
+        if (pointsInTimeFull.Count > Mathf.Round((recordTime+recordTime) / Time.fixedDeltaTime))
+        {
+            pointsInTimeFull.RemoveAt(pointsInTimeFull.Count - 1);
+        }
     }
 
     public void StartRewind()
