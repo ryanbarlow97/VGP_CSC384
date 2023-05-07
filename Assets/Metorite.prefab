@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2952009545824456217}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.256094, y: -1.957027, z: 0}
-  m_LocalScale: {x: 1.1832318, y: 1.1832318, z: 1}
+  m_LocalScale: {x: 1.4570289, y: 1.4570289, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -182,4 +182,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRewinding: 0
+  pointsInTime: []
   pointsInTimeFull: []

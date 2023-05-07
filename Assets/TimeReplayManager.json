@@ -1,12 +1,12 @@
 {
     "timeReplayDataList": [
         {
-            "instanceID": -597592,
+            "instanceID": -25686,
             "pointsInTimeFull": [
                 {
                     "position": {
-                        "x": 1.144343376159668,
-                        "y": -5.5,
+                        "x": -5.131563186645508,
+                        "y": -5.2974700927734379,
                         "z": 0.0
                     },
                     "rotation": {
@@ -16,29 +16,29 @@
                         "w": 1.0
                     },
                     "velocity": {
-                        "x": -1.01458740234375,
-                        "y": 3.636173725128174
+                        "x": 1.01689875125885,
+                        "y": 0.7789555191993713
                     },
                     "angularVelocity": 0.0,
                     "scale": {
-                        "x": 1.146089792251587,
-                        "y": 1.146089792251587,
+                        "x": 1.457028865814209,
+                        "y": 1.457028865814209,
                         "z": 1.0
                     },
                     "tag": "MeteorLarge",
-                    "spawnedAt": 17.35411262512207,
-                    "destroyedAt": 17.374113082885743,
+                    "spawnedAt": 21.915882110595704,
+                    "destroyedAt": 21.935882568359376,
                     "isEnabled": true
                 }
             ]
         },
         {
-            "instanceID": -597576,
+            "instanceID": -25670,
             "pointsInTimeFull": [
                 {
                     "position": {
-                        "x": 8.49951457977295,
-                        "y": 5.5,
+                        "x": 9.725990295410157,
+                        "y": 0.903145968914032,
                         "z": 0.0
                     },
                     "rotation": {
@@ -48,136 +48,8 @@
                         "w": 1.0
                     },
                     "velocity": {
-                        "x": -0.7766590714454651,
-                        "y": -0.7296742796897888
-                    },
-                    "angularVelocity": 0.0,
-                    "scale": {
-                        "x": 1.4842371940612794,
-                        "y": 1.4842371940612794,
-                        "z": 1.0
-                    },
-                    "tag": "MeteorLarge",
-                    "spawnedAt": 16.35106658935547,
-                    "destroyedAt": 16.37106704711914,
-                    "isEnabled": true
-                }
-            ]
-        },
-        {
-            "instanceID": -597560,
-            "pointsInTimeFull": [
-                {
-                    "position": {
-                        "x": 9.779635429382325,
-                        "y": 4.113547325134277,
-                        "z": 0.0
-                    },
-                    "rotation": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
-                    },
-                    "velocity": {
-                        "x": -1.977070927619934,
-                        "y": -1.8227119445800782
-                    },
-                    "angularVelocity": 0.0,
-                    "scale": {
-                        "x": 1.3311634063720704,
-                        "y": 1.3311634063720704,
-                        "z": 1.0
-                    },
-                    "tag": "MeteorLarge",
-                    "spawnedAt": 15.348626136779786,
-                    "destroyedAt": 15.368626594543457,
-                    "isEnabled": true
-                }
-            ]
-        },
-        {
-            "instanceID": -597544,
-            "pointsInTimeFull": [
-                {
-                    "position": {
-                        "x": -9.779635429382325,
-                        "y": 0.8934760093688965,
-                        "z": 0.0
-                    },
-                    "rotation": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
-                    },
-                    "velocity": {
-                        "x": 3.192030668258667,
-                        "y": 0.6333410739898682
-                    },
-                    "angularVelocity": 0.0,
-                    "scale": {
-                        "x": 1.5995604991912842,
-                        "y": 1.5995604991912842,
-                        "z": 1.0
-                    },
-                    "tag": "MeteorLarge",
-                    "spawnedAt": 14.347223281860352,
-                    "destroyedAt": 14.367223739624024,
-                    "isEnabled": true
-                }
-            ]
-        },
-        {
-            "instanceID": -590270,
-            "pointsInTimeFull": [
-                {
-                    "position": {
-                        "x": 4.026415824890137,
-                        "y": -5.5,
-                        "z": 0.0
-                    },
-                    "rotation": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
-                    },
-                    "velocity": {
-                        "x": -2.943300485610962,
-                        "y": 2.6162266731262209
-                    },
-                    "angularVelocity": 0.0,
-                    "scale": {
-                        "x": 1.7944185733795167,
-                        "y": 1.7944185733795167,
-                        "z": 1.0
-                    },
-                    "tag": "MeteorLarge",
-                    "spawnedAt": 10.329771041870118,
-                    "destroyedAt": 10.349771499633789,
-                    "isEnabled": true
-                }
-            ]
-        },
-        {
-            "instanceID": -580782,
-            "pointsInTimeFull": [
-                {
-                    "position": {
-                        "x": 9.598479270935059,
-                        "y": 4.97958517074585,
-                        "z": 0.0
-                    },
-                    "rotation": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0,
-                        "w": 1.0
-                    },
-                    "velocity": {
-                        "x": -0.6967496871948242,
-                        "y": -0.6365896463394165
+                        "x": -0.20631816983222962,
+                        "y": -0.07946812361478806
                     },
                     "angularVelocity": 0.0,
                     "scale": {
@@ -186,14 +58,14 @@
                         "z": 0.20000000298023225
                     },
                     "tag": "SpeedPowerUp",
-                    "spawnedAt": 3.2691574096679689,
-                    "destroyedAt": 3.2891573905944826,
+                    "spawnedAt": 21.915882110595704,
+                    "destroyedAt": 21.935882568359376,
                     "isEnabled": true
                 }
             ]
         },
         {
-            "instanceID": 184482,
+            "instanceID": 41040,
             "pointsInTimeFull": [
                 {
                     "position": {
@@ -218,8 +90,8 @@
                         "z": 1.0
                     },
                     "tag": "PlayerShip",
-                    "spawnedAt": 3.2691574096679689,
-                    "destroyedAt": 3.2891573905944826,
+                    "spawnedAt": 21.915882110595704,
+                    "destroyedAt": 21.935882568359376,
                     "isEnabled": true
                 }
             ]

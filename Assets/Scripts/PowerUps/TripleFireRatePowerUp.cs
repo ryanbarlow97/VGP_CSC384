@@ -15,8 +15,11 @@ public class TripleFireRatePowerUp : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PlayerShip"))
         {
-            // Destroy the powerup
-            Destroy(gameObject);
+            // Disable the powerup's renderer and collider
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<Collider2D>().enabled = false;
+            // Wait for 3.25 seconds and then destroy the powerup
+            Destroy(gameObject, 3.25f);
 
             PowerUpEventManager.Instance.TriggerEvent("TripleFireRatePowerUp", this);
         }

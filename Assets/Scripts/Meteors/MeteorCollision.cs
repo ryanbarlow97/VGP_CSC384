@@ -48,7 +48,8 @@ public class MeteorCollision : MonoBehaviour
             // Disable the meteor's renderer and collider
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<Collider2D>().enabled = false;
-
+            // Wait for 3.25 seconds and then destroy the meteor
+            Destroy(gameObject, 3.25f);
         
             Destroy(newExplosion, 0.8f);
             if (gameSession != null){

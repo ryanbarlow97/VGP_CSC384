@@ -589,6 +589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRewinding: 0
+  pointsInTime: []
   pointsInTimeFull: []
 --- !u!1 &349719700
 GameObject:

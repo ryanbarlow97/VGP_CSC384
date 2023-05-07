@@ -17,13 +17,11 @@ public class LivesCounter : MonoBehaviour
     private ICommand playHeathLossSoundCommand;
     private ICommand playGameOverSoundCommand;
     private int saveSlotNumber;
-    private float invincibilityDuration = 1.0f;
+    private float invincibilityDuration = 2f;
     private bool isInvincible = false;  
     private int lives;
     private GameSession gameSession;
-
     private SaveData saveData;
-
 
     private void Start()
     {
@@ -71,6 +69,11 @@ public class LivesCounter : MonoBehaviour
     private IEnumerator RespawnPlayer()
     {
         isInvincible = true;
+
+        // Disable the BoxCollider2D
+        BoxCollider2D playerCollider = playerShip.GetComponent<BoxCollider2D>();
+        playerCollider.enabled = false;
+
         // Teleport the player back to the middle
         playerShip.transform.position = Vector3.zero;
 
@@ -90,7 +93,7 @@ public class LivesCounter : MonoBehaviour
 
         // Apply flashing color effect
         for (int i = 0; i < 10; i++)
-        {
+        {   
             playerSpriteRenderer.color = flashColor;
             yield return new WaitForSecondsRealtime(flashDuration);
             playerSpriteRenderer.color = Color.white;
@@ -101,13 +104,12 @@ public class LivesCounter : MonoBehaviour
         if (!pauseMenu.IsGamePaused)
         {
             Time.timeScale = 1f;
-           
-
         }
+
         StartCoroutine(InvincibilityTimer());
+
         // Allow shooting again
         weaponSystem.canShoot = true;
-
     }
 
     public int GetLives()
@@ -144,7 +146,14 @@ public class LivesCounter : MonoBehaviour
     }
     private IEnumerator InvincibilityTimer()
     {
+        playerSpriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
         yield return new WaitForSeconds(invincibilityDuration);
+
+        // Enable the BoxCollider2D after the invincibility period
+        BoxCollider2D playerCollider = playerShip.GetComponent<BoxCollider2D>();
+        playerCollider.enabled = true;
+        playerSpriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+
         isInvincible = false;
     }
 
