@@ -37,6 +37,12 @@ public class MainMenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         transitionEffect.LoadScene("GameReplay");
     }
+
+    public void Achievements() 
+    {
+        transitionEffect.LoadScene("Achievements");
+    }
+
     public void Leaderboards() 
     {
         transitionEffect.LoadScene("Leaderboards");
