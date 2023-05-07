@@ -32,7 +32,10 @@ public class MainMenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         SceneManager.LoadScene("SaveSlots");
     }
-
+    public void Replays() 
+    {
+        SceneManager.LoadScene("GameReplay");
+    }
     public void Leaderboards() 
     {
         SceneManager.LoadScene("Leaderboards");

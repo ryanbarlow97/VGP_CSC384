@@ -5,78 +5,141 @@ using System.Linq;
 
 public class TimeRewind : MonoBehaviour
 {
-    private bool isRewinding = false;
-    private TimeRewinder timeRewinder;
-    public GameObject playerShip;
+    public bool isRewinding = false;
+    private float recordTime = 3f;
+    public List<PointInTime> pointsInTime;
+    public List<PointInTime> pointsInTimeFull;
+    private Rigidbody2D rb;
+    private float objectLifetime;
+    private int instanceID;
 
     private void Start()
     {
-        timeRewinder = GetComponent<TimeRewinder>();
+        pointsInTime = new List<PointInTime>();
+        pointsInTimeFull = new List<PointInTime>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            TriggerRewind();
+            StartRewind();
         }
     }
 
-
-
-    private void FixedUpdate()
+    void LateUpdate()
     {
         if (isRewinding)
         {
-            timeRewinder.Rewind();
+            Rewind();
         }
         else
         {
-            timeRewinder.Record();
+            Record();
+        }
+    }
+
+    private void Rewind()
+    {
+        if (gameObject.tag == "PlayerShip")
+        {
+            PlayerMovement playerMovement = GetComponent<PlayerMovement>();
+            if (playerMovement != null)
+            {
+                playerMovement.enabled = false;
+            }
+
+            WeaponSystem weaponSystem = GetComponent<WeaponSystem>();
+            if (weaponSystem != null)
+            {
+                weaponSystem.enabled = false;
+            }
+        }
+
+        if (pointsInTime.Count > 0)
+        {
+            PointInTime pointInTime = pointsInTime[0];
+            transform.position = pointInTime.position;
+            transform.rotation = pointInTime.rotation;
+            rb.velocity = pointInTime.velocity;
+            rb.angularVelocity = pointInTime.angularVelocity;
+            transform.localScale = pointInTime.scale;
+            gameObject.tag = pointInTime.tag;
+            GetComponent<SpriteRenderer>().enabled = pointInTime.isEnabled;
+            GetComponent<Collider2D>().enabled = pointInTime.isEnabled;
+
+            pointsInTimeFull.RemoveAt(0);
+            pointsInTime.RemoveAt(0);
+        }
+        else
+        {
+            if (gameObject.tag == "PlayerShip")
+            {
+                PlayerMovement playerMovement = GetComponent<PlayerMovement>();
+                if (playerMovement != null)
+                {
+                    playerMovement.enabled = true;
+                }
+
+                WeaponSystem weaponSystem = GetComponent<WeaponSystem>();
+                if (weaponSystem != null)
+                {
+                    weaponSystem.enabled = true;
+                }
+            }
+            if (pointsInTimeFull.Count == 0){
+                Destroy(gameObject);
+            }
+            StopRewind();
+        }
+    }
+    private void Record()
+    {
+        bool isEnabled = GetComponent<SpriteRenderer>().enabled;
+        objectLifetime += Time.fixedDeltaTime;
+        pointsInTime.Insert(0, new PointInTime(transform.position, transform.rotation, rb.velocity, rb.angularVelocity, transform.localScale, gameObject.tag, Time.time, Time.time + objectLifetime, isEnabled));
+        pointsInTimeFull.Insert(0, new PointInTime(transform.position, transform.rotation, rb.velocity, rb.angularVelocity, transform.localScale, gameObject.tag, Time.time, Time.time + objectLifetime, isEnabled));
+
+        if (pointsInTime.Count > Mathf.Round(recordTime / Time.fixedDeltaTime))
+        {
+            pointsInTime.RemoveAt(pointsInTime.Count - 1);
         }
     }
 
     public void StartRewind()
     {
         isRewinding = true;
-        timeRewinder.isRewinding = true;
-        playerShip.GetComponent<PlayerMovement>().enabled = false;
-        playerShip.GetComponent<WeaponSystem>().enabled = false;
     }
 
     public void StopRewind()
     {
         isRewinding = false;
-        timeRewinder.isRewinding = false;
-        playerShip.GetComponent<PlayerMovement>().enabled = true;
-        playerShip.GetComponent<WeaponSystem>().enabled = true;
-    }
-    public void TriggerRewind()
-    {
-        StartCoroutine(RewindCoroutine());
     }
 
-    private IEnumerator RewindCoroutine()
+    public SerializableTimeRewindData GetData()
     {
-        float rewindStartTime = Time.time;
-        float maxRewindDuration = 3f;
-
-        if (rewindStartTime < maxRewindDuration)
+        SerializableTimeRewindData data = new SerializableTimeRewindData
         {
-            maxRewindDuration = rewindStartTime;
+            instanceID = GetInstanceID(),
+        };
+
+        if (pointsInTimeFull.Count > 0)
+        {
+            data.pointsInTimeFull = new List<PointInTime> { pointsInTimeFull[pointsInTimeFull.Count - 1] };
+        }
+        else
+        {
+            data.pointsInTimeFull = new List<PointInTime>();
         }
 
-        StartRewind();
-        while (Time.time - rewindStartTime < maxRewindDuration)
-        {
-            if (!timeRewinder.IsAnyRewind())
-            {
-                break;
-            }
-            yield return null;
-        }
-        StopRewind();
-        Time.timeScale = 1;
+        return data;
     }
 
+
+    public void SetData(SerializableTimeRewindData data)
+    {
+        instanceID = data.instanceID;
+        pointsInTime = data.pointsInTimeFull;
+    }
 }

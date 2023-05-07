@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+
 
 public class MeteorCollision : MonoBehaviour
 {
@@ -7,21 +9,25 @@ public class MeteorCollision : MonoBehaviour
     private LivesCounter livesCounter;
     public AudioClip meteorExplosion;
     private ICommand playMeteorSoundCommand;
-
     private GameSession gameSession;
+    public GameObject playerShip;
 
     private void Start()
     {
         livesCounter = FindObjectOfType<LivesCounter>();
         playMeteorSoundCommand = new PlaySoundCommand(livesCounter, meteorExplosion);
         gameSession = FindObjectOfType<GameSession>();
+        playerShip = GameObject.FindGameObjectWithTag("PlayerShip");
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Bullet"))
+        if (other.CompareTag("Bullet") && playerShip.GetComponent<TimeRewind>().isRewinding == false)
         {
-            // Destroy the bullet
-            Destroy(other.gameObject);
+            other.GetComponent<SpriteRenderer>().enabled = false;
+            other.GetComponent<Collider2D>().enabled = false;
+
+            // Wait for 3.25 seconds and then destroy the meteor
+            Destroy(other.gameObject, 3.25f);
 
             // Spawn an explosion at the meteor's position
             GameObject newExplosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
@@ -38,24 +44,34 @@ public class MeteorCollision : MonoBehaviour
             spawnSmallerMeteorsCommand.Execute();
         
             playMeteorSoundCommand.Execute();
-            // Destroy the meteor
-            Destroy(gameObject);
 
-            // Destroy explosion after 1.25 seconds
+            // Disable the meteor's renderer and collider
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<Collider2D>().enabled = false;
+
+        
             Destroy(newExplosion, 0.8f);
-
-            gameSession.IncrementMeteorsDestroyed();
+            if (gameSession != null){
+                gameSession.IncrementMeteorsDestroyed();
+            }
         }
 
-        if (other.CompareTag("PlayerShip"))
+        if (other.CompareTag("PlayerShip") && playerShip.GetComponent<TimeRewind>().isRewinding == false)
         {
-            livesCounter.PlayerHit();
+            if (livesCounter != null)
+            {
+                livesCounter.PlayerHit();
+            }
 
             // Spawn an explosion at the meteor's position
             GameObject newExplosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
-            // Destroy the meteor
-            Destroy(gameObject);
+            // Disable the meteor's renderer and collider
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<Collider2D>().enabled = false;
+
+            // Wait for 3.25 seconds and then destroy the meteor
+            Destroy(gameObject, 3.25f);
         }
     }
 }

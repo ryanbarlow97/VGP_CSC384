@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EndGame.unity
     guid: eda33c3d50654c543b4c92ff4b503f0b
+  - enabled: 1
+    path: Assets/Scenes/GameReplay.unity
+    guid: d80d4bd27d006ef4d93f3d280e8e1fed
   m_configObjects: {}

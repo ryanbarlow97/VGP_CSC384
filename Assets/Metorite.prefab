@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -927634329648992115}
   - component: {fileID: 786563285610771850}
   - component: {fileID: -1251592221117408095}
+  - component: {fileID: -8051233265335876911}
   m_Layer: 0
   m_Name: Metorite
   m_TagString: MeteorLarge
@@ -29,8 +30,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2952009545824456217}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.4198842, y: 1.4198842, z: 1}
+  m_LocalPosition: {x: -9.256094, y: -1.957027, z: 0}
+  m_LocalScale: {x: 1.1832318, y: 1.1832318, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -128,6 +129,7 @@ MonoBehaviour:
   - {fileID: 2952009545824456217, guid: c216129a482d3bd48a6c0ece30edbbc6, type: 3}
   - {fileID: 2952009545824456217, guid: 56d18ba642e8a3c47b800e0f4b5cf864, type: 3}
   meteorExplosion: {fileID: 8300000, guid: 25d5c33cc19e3e14c87f6734c92c391a, type: 3}
+  playerShip: {fileID: 0}
 --- !u!61 &786563285610771850
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -166,4 +168,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 777a9c9e02975bd4e997cef8937ae866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: 2
+  offset: 20
+--- !u!114 &-8051233265335876911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2952009545824456217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56a9bcd4085a52944aa269034e0c4f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRewinding: 0
+  pointsInTimeFull: []

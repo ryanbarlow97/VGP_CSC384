@@ -15,6 +15,8 @@ public class MainGameButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     private Color originalColor;
     private int saveSlotNumber;
+    public TimeReplayManager timeReplayManager;
+
 
     private void Start()
     {
@@ -47,11 +49,10 @@ public class MainGameButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     private void SaveGameData()
     {
-        ReplayManager replayManager = FindObjectOfType<ReplayManager>();
-        if (replayManager != null)
-        {
-            replayManager.SaveReplayToFile();
-        }
+        TimeReplayManager timeReplayManager = FindObjectOfType<TimeReplayManager>();
+        timeReplayManager.SaveAllTimeRewindData();
+        timeReplayManager.SaveToFile();
+
         SaveData savedData = SaveManager.Load(saveSlotNumber);
         SaveData currentSaveData = GetCurrentSaveData(savedData);
         SaveManager.Save(currentSaveData, saveSlotNumber);

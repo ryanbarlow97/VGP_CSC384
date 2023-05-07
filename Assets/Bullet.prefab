@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2539632148715888747}
   - component: {fileID: 4350250040090408780}
   - component: {fileID: 73576781945137667}
+  - component: {fileID: -3743689991891603659}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Bullet
@@ -27,8 +28,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2539632148715888742}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.74930924, w: 0.6622203}
+  m_LocalPosition: {x: -0.8624092, y: -0.106825076, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -146,4 +147,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 777a9c9e02975bd4e997cef8937ae866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: 2
+  offset: 40
+--- !u!114 &-3743689991891603659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2539632148715888742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56a9bcd4085a52944aa269034e0c4f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRewinding: 0
+  pointsInTimeFull: []
