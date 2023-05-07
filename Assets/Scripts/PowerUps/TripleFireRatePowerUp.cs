@@ -26,7 +26,7 @@ public class TripleFireRatePowerUp : MonoBehaviour
             string[] achievementIds = { "collector1", "collector2", "collector3" };
             foreach (string achievementId in achievementIds)
             {
-                Achievement achievement = achievementManager.GetAchievement(achievementId);
+                AchievementEntry achievement = achievementManager.GetAchievement(achievementId);
 
                 if (!achievement.unlocked)
                 {
@@ -43,7 +43,7 @@ public class TripleFireRatePowerUp : MonoBehaviour
             {
                 if (gameSession.PowerupsCollected >= achievementData.goal)
                 {
-                    Achievement achievement = achievementManager.GetAchievement(achievementData.id);
+                    AchievementEntry achievement = achievementManager.GetAchievement(achievementData.id);
                     if (!achievement.unlocked)
                     {
                         achievementManager.IncrementProgress(achievementData.id);

@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 1187988635}
   - component: {fileID: 1187988634}
   m_Layer: 0
-  m_Name: LeaderboardDisplay
+  m_Name: AchievementDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -325,10 +325,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1187988632}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8edc6b3b258f0f1439864ba277495b78, type: 3}
+  m_Script: {fileID: 11500000, guid: c28e3a6253e06404a9a11a13d922ddd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScoreEntryPrefab: {fileID: 8922592569565598157, guid: 53156349fb380d2429156499d19bcb1f, type: 3}
+  achievementEntryPrefab: {fileID: 0}
 --- !u!1 &1188251385
 GameObject:
   m_ObjectHideFlags: 0
