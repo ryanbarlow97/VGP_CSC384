@@ -5,7 +5,7 @@ using System.Collections;
 
 public class AchievementManager : MonoBehaviour
 {
-    public string achievementsFilePath;
+    private string achievementsFilePath;
     private AchievementsData achievementsData;
 
     private void Start()
@@ -36,8 +36,8 @@ public class AchievementManager : MonoBehaviour
                     new Achievement { id = "meteorDodger", name = "Meteor Dodger", description = "Destroy 50 meteors without taking damage.", progress = 0, goal = 1, unlocked = false },
                     new Achievement { id = "meteorEvader", name = "Meteor Evader", description = "Destroy 100 meteors without taking damage.", progress = 0, goal = 1, unlocked = false },
 
-                    new Achievement { id = "collector", name = "Collector", description = "Collect 5 power-ups in a single game.", progress = 0, goal = 1, unlocked = false },
-                    new Achievement { id = "collector", name = "Collector", description = "Collect 10 power-ups in a single game.", progress = 0, goal = 1, unlocked = false },
+                    new Achievement { id = "collectorSingleGame5", name = "Power Up Collector", description = "Collect 5 power-ups in a single game.", progress = 0, goal = 1, unlocked = false },
+                    new Achievement { id = "collectorSingleGame10", name = "I feel invincible!", description = "Collect 10 power-ups in a single game.", progress = 0, goal = 1, unlocked = false },
                     
                     new Achievement { id = "collector1", name = "Collector 1", description = "Collect 10 power-ups.", progress = 0, goal = 10, unlocked = false },
                     new Achievement { id = "collector2", name = "Collector 2", description = "Collect 20 power-ups.", progress = 0, goal = 20, unlocked = false },
@@ -53,23 +53,10 @@ public class AchievementManager : MonoBehaviour
         string json = JsonUtility.ToJson(achievementsData);
         File.WriteAllText(achievementsFilePath, json);
     }
-
-    public void UpdateAchievementProgress(string id, int progress)
-    {
-        Achievement achievement = achievementsData.achievements.Find(a => a.id == id);
-        if (achievement != null)
-        {
-            achievement.progress = progress;
-            if (progress >= achievement.goal)
-            {
-                achievement.unlocked = true;
-            }
-            SaveAchievements();
-        }
-    }
     public Achievement GetAchievement(string id)
     {
         Achievement achievement = achievementsData.achievements.Find(a => a.id == id.ToString());
+        
         return achievement;
     }
     public void IncrementProgress(string id)

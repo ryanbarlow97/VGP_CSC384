@@ -20,6 +20,9 @@ public class GameSession : MonoBehaviour
     // Slot Number
     public string PlayerName { get; private set; }
 
+    //Consecutive meteors destroyed
+    public int ConsecutiveMeteorsDestroyed { get; private set; }
+
     // Score
     public int Score { get; private set; }
 
@@ -56,6 +59,7 @@ public class GameSession : MonoBehaviour
     public void IncrementMeteorsDestroyed()
     {
         MeteorsDestroyed++;
+        IncrementConsecutiveMeteorsDestroyed();
     }
 
     public void IncrementPowerupsCollected()
@@ -81,5 +85,15 @@ public class GameSession : MonoBehaviour
     public void SetSaveSlotNumber(int slotNumber)
     {
         SaveSlotNumber = slotNumber;
+    }
+
+    public void SetConsecutiveMeteorsDestroyed(int consecutiveMeteorsDestroyed)
+    {
+        ConsecutiveMeteorsDestroyed = consecutiveMeteorsDestroyed;
+    }
+
+    public void IncrementConsecutiveMeteorsDestroyed()
+    {
+        ConsecutiveMeteorsDestroyed++;
     }
 }

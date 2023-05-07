@@ -39,6 +39,7 @@ public class MainGameLoader : MonoBehaviour
             gameSession.SetTotalPlayTime(savedData.survivalTime);
             gameSession.SetMeteorsDestroyed(savedData.meteorsDestroyed);
             gameSession.SetPowerupsCollected(savedData.powerupsCollected);
+            gameSession.SetConsecutiveMeteorsDestroyed(savedData.consecutiveMeteorsDestroyed);
             
             // Set the player position and rotation
             player.transform.position = savedData.playerPosition.ToVector3();

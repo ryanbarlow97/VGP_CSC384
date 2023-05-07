@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2952009545824456217}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.256094, y: -1.957027, z: 0}
-  m_LocalScale: {x: 1.6089342, y: 1.6089342, z: 1}
+  m_LocalScale: {x: 1.1179167, y: 1.1179167, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -130,6 +130,7 @@ MonoBehaviour:
   - {fileID: 2952009545824456217, guid: 56d18ba642e8a3c47b800e0f4b5cf864, type: 3}
   meteorExplosion: {fileID: 8300000, guid: 25d5c33cc19e3e14c87f6734c92c391a, type: 3}
   playerShip: {fileID: 0}
+  achievementManager: {fileID: 0}
 --- !u!61 &786563285610771850
 BoxCollider2D:
   m_ObjectHideFlags: 0

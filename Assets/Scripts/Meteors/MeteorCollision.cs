@@ -21,6 +21,7 @@ public class MeteorCollision : MonoBehaviour
         playMeteorSoundCommand = new PlaySoundCommand(livesCounter, meteorExplosion);
         gameSession = FindObjectOfType<GameSession>();
         playerShip = GameObject.FindGameObjectWithTag("PlayerShip");
+        achievementManager = FindObjectOfType<AchievementManager>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -64,8 +65,25 @@ public class MeteorCollision : MonoBehaviour
                 gameSession.IncrementScore(10);
             }
 
-            // Update the progress of the Meteor Destruction achievements
-            string[] achievementIds = { "meteorNovice", "meteorExpert", "meteorMaster" };
+            (string id, int goal)[] consecutiveMeteorAchievements = {
+                ("meteorCrusher", 25),
+                ("meteorDodger", 50),
+                ("meteorEvader", 100)
+            };
+
+            foreach (var achievementData in consecutiveMeteorAchievements)
+            {
+                if (gameSession.ConsecutiveMeteorsDestroyed >= achievementData.goal)
+                {
+                    Achievement achievement = achievementManager.GetAchievement(achievementData.id);
+                    if (!achievement.unlocked)
+                    {
+                        achievementManager.IncrementProgress(achievementData.id);
+                    }
+                }
+            }
+
+            string[] achievementIds = { "meteor1", "meteor2", "meteor3", "meteor4" };
             foreach (string achievementId in achievementIds)
             {
                 Achievement achievement = achievementManager.GetAchievement(achievementId);
@@ -74,7 +92,6 @@ public class MeteorCollision : MonoBehaviour
                 if (!achievement.unlocked)
                 {
                     achievementManager.IncrementProgress(achievementId);
-                    achievementManager.UpdateAchievementProgress(achievementId, achievement.progress);
                 }
             }
         }
@@ -84,6 +101,7 @@ public class MeteorCollision : MonoBehaviour
             if (livesCounter != null)
             {
                 livesCounter.PlayerHit();
+                gameSession.SetConsecutiveMeteorsDestroyed(0);
             }
 
             // Spawn an explosion at the meteor's position

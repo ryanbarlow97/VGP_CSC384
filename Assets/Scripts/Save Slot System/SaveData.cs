@@ -15,6 +15,7 @@ public class SaveData
     public float survivalTime;
     public int meteorsDestroyed;
     public int powerupsCollected;
+    public int consecutiveMeteorsDestroyed;
 
 }
 
