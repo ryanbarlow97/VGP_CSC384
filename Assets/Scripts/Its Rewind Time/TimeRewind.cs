@@ -148,3 +148,10 @@ public class TimeRewind : MonoBehaviour
         pointsInTime = data.pointsInTimeFull;
     }
 }
+
+[System.Serializable]
+public class SerializableTimeRewindData
+{
+    public int instanceID;
+    public List<PointInTime> pointsInTimeFull;
+}
