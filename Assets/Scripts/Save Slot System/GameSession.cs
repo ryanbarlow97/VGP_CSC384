@@ -20,6 +20,9 @@ public class GameSession : MonoBehaviour
     // Slot Number
     public string PlayerName { get; private set; }
 
+    // Score
+    public int Score { get; private set; }
+
     private void Start()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -58,6 +61,16 @@ public class GameSession : MonoBehaviour
     public void IncrementPowerupsCollected()
     {
         PowerupsCollected++;
+    }
+
+    public void IncrementScore(int score)
+    {
+        score += score;
+    }
+
+    public void SetScore(int score)
+    {
+        Score = score;
     }
 
     public void SetPlayerName(string name)

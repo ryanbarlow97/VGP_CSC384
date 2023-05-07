@@ -35,6 +35,7 @@ public class MainGameLoader : MonoBehaviour
             //Get the remaining hearts
             playerHearts = savedData.playerHearts;
             gameSession.SetSaveSlotNumber(saveSlotNumber);
+            gameSession.SetScore(savedData.playerScore);
             gameSession.SetTotalPlayTime(savedData.survivalTime);
             gameSession.SetMeteorsDestroyed(savedData.meteorsDestroyed);
             gameSession.SetPowerupsCollected(savedData.powerupsCollected);

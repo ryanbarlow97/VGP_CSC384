@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System;
+using System.IO;
 
 public class EndGameStats : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class EndGameStats : MonoBehaviour
     public TextMeshProUGUI meteorsDestroyedText;
     public TextMeshProUGUI powerupsCollectedText;
     public TextMeshProUGUI playerNameText;
+    public TextMeshProUGUI scoreText;
 
     public Button tryAgainButton;
     public Button backToMenuButton;
@@ -19,6 +21,8 @@ public class EndGameStats : MonoBehaviour
     private float survivalTime;
     private int meteorsDestroyed;
     private int powerupsCollected;
+    private int score;
+
 
     private GameSession gameSession;
     private void Start()
@@ -27,17 +31,32 @@ public class EndGameStats : MonoBehaviour
         saveSlotNumber = gameSession.SaveSlotNumber;
         
         playerName = gameSession.PlayerName;
+        score = gameSession.Score;
         survivalTime = gameSession.GetCurrentPlayTime();
         meteorsDestroyed = gameSession.MeteorsDestroyed;
         powerupsCollected = gameSession.PowerupsCollected;
 
         playerNameText.text = $"{playerName}";
+        scoreText.text = $" {score} points";
         survivalTimeText.text = $" {Math.Round(survivalTime/ 60.0f, 1)} minutes";
         meteorsDestroyedText.text = $" {meteorsDestroyed} meteors";
         powerupsCollectedText.text = $" {powerupsCollected} powerups";
 
         tryAgainButton.onClick.AddListener(TryAgain);
         backToMenuButton.onClick.AddListener(BackToMenu);
+
+        string leaderboardFilename = Path.Combine(Application.persistentDataPath, "leaderboard.json");
+        Leaderboard leaderboard = Leaderboard.Load(leaderboardFilename);
+
+        LeaderboardEntry newEntry = new LeaderboardEntry
+        {
+            playerName = playerName,
+            score = score
+        };
+
+        leaderboard.AddEntry(newEntry);
+        leaderboard.Save(leaderboardFilename);
+
     }
      private void TryAgain()
     {

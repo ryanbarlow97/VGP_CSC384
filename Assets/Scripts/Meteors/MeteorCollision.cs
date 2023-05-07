@@ -11,10 +11,12 @@ public class MeteorCollision : MonoBehaviour
     private ICommand playMeteorSoundCommand;
     private GameSession gameSession;
     public GameObject playerShip;
+    private ScoreCount scoreCount;
 
     private void Start()
     {
         livesCounter = FindObjectOfType<LivesCounter>();
+        scoreCount = FindObjectOfType<ScoreCount>();
         playMeteorSoundCommand = new PlaySoundCommand(livesCounter, meteorExplosion);
         gameSession = FindObjectOfType<GameSession>();
         playerShip = GameObject.FindGameObjectWithTag("PlayerShip");
@@ -37,7 +39,6 @@ public class MeteorCollision : MonoBehaviour
 
             // Get the meteor's speed at the time of collision
             float meteorSpeed = GetComponent<Rigidbody2D>().velocity.magnitude;
-
             // Spawn smaller meteors
             ICommand spawnSmallerMeteorsCommand = new SpawnSmallerMeteorsCommand(
                 smallMeteorPrefabs, transform.position, meteorSpeed / 2, bulletImpactDirection, transform.localScale.x);
@@ -54,6 +55,9 @@ public class MeteorCollision : MonoBehaviour
             Destroy(newExplosion, 0.8f);
             if (gameSession != null){
                 gameSession.IncrementMeteorsDestroyed();
+            }
+            if (scoreCount != null){
+                scoreCount.IncrementScore(10);
             }
         }
 

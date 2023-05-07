@@ -11,6 +11,7 @@ public class MainGameButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [SerializeField] private TextMeshProUGUI originalText;
     [SerializeField] private GameObject player;
     [SerializeField] private LivesCounter livesCounter;
+    [SerializeField] private ScoreCount scoreCount;
     private GameSession gameSession;
 
     private Color originalColor;
@@ -63,7 +64,7 @@ public class MainGameButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
         SaveData currentSaveData = new SaveData
         {
             playerName = savedData.playerName,
-            playerScore = 20,
+            playerScore = scoreCount.GetScore(),
             playerHearts = livesCounter.GetLives(),
             playerPosition = SerializableVector3.FromVector3(player.transform.position),
             playerRotation = SerializableVector3.FromVector3(player.transform.eulerAngles),
@@ -76,9 +77,6 @@ public class MainGameButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
             
             powerupsCollected = gameSession.PowerupsCollected
         };
-        Debug.Log("Survival Time: " + currentSaveData.survivalTime);
-        Debug.Log("Meteors Destroyed: " + currentSaveData.meteorsDestroyed);
-        Debug.Log("Powerups Collected: " + currentSaveData.powerupsCollected);
         return currentSaveData;
     }
 
