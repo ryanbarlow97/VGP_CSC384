@@ -65,7 +65,7 @@ public class GameSession : MonoBehaviour
 
     public void IncrementScore(int score)
     {
-        score += score;
+        Score += score;
     }
 
     public void SetScore(int score)

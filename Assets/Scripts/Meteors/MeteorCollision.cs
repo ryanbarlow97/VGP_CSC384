@@ -58,6 +58,7 @@ public class MeteorCollision : MonoBehaviour
             }
             if (scoreCount != null){
                 scoreCount.IncrementScore(10);
+                gameSession.IncrementScore(10);
             }
         }
 

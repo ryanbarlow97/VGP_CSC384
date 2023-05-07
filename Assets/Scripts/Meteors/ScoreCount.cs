@@ -17,10 +17,10 @@ public class ScoreCount : MonoBehaviour
         saveSlotNumber = gameSession.SaveSlotNumber;
         saveData = SaveManager.Load(saveSlotNumber);
         score = saveData.playerScore;
-        UpdateLivesText();
+        UpdateScoreText();
     }
 
-    private void UpdateLivesText()
+    private void UpdateScoreText()
     {
         GetComponent<TextMeshProUGUI>().text = score.ToString();
     }
@@ -28,7 +28,7 @@ public class ScoreCount : MonoBehaviour
     public void IncrementScore(int amount)
     {
         score += amount;
-        UpdateLivesText();
+        UpdateScoreText();
     }
     public int GetScore()
     {
