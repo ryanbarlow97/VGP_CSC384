@@ -30,9 +30,7 @@ public class Achievement
         if (File.Exists(filename))
         {
             string json = File.ReadAllText(filename);
-            Debug.Log("Loaded JSON: " + json);
             Achievement achievement = JsonUtility.FromJson<Achievement>(json);
-            Debug.Log("Achievement count after deserialization: " + achievement.achievements.Count);
             return achievement;
         }
         Debug.Log("File does not exist: " + filename);
