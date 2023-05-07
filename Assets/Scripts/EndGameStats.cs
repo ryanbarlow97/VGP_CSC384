@@ -22,6 +22,7 @@ public class EndGameStats : MonoBehaviour
     private int meteorsDestroyed;
     private int powerupsCollected;
     private int score;
+    private TransitionEffect transitionEffect;
 
 
     private GameSession gameSession;
@@ -57,6 +58,8 @@ public class EndGameStats : MonoBehaviour
         leaderboard.AddEntry(newEntry);
         leaderboard.Save(leaderboardFilename);
 
+        transitionEffect = FindObjectOfType<TransitionEffect>();
+
     }
      private void TryAgain()
     {
@@ -72,8 +75,7 @@ public class EndGameStats : MonoBehaviour
         data.playerRotation = new SerializableVector3(0, 0, 0);
 
         SaveManager.Save(data, saveSlotNumber);
-
-        SceneManager.LoadScene("MainGame"); 
+        transitionEffect.LoadScene("MainGame");
     }
 
     private void BackToMenu()
@@ -81,6 +83,6 @@ public class EndGameStats : MonoBehaviour
         Destroy(gameSession.gameObject);
         // End the game and reset the save slot
         SaveManager.Delete(saveSlotNumber);
-        SceneManager.LoadScene("MainMenu"); 
+        transitionEffect.LoadScene("MainMenu");
     }
 }

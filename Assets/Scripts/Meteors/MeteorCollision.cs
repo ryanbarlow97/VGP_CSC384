@@ -12,6 +12,7 @@ public class MeteorCollision : MonoBehaviour
     private GameSession gameSession;
     public GameObject playerShip;
     private ScoreCount scoreCount;
+    public AchievementManager achievementManager;
 
     private void Start()
     {
@@ -43,7 +44,7 @@ public class MeteorCollision : MonoBehaviour
             ICommand spawnSmallerMeteorsCommand = new SpawnSmallerMeteorsCommand(
                 smallMeteorPrefabs, transform.position, meteorSpeed / 2, bulletImpactDirection, transform.localScale.x);
             spawnSmallerMeteorsCommand.Execute();
-        
+
             playMeteorSoundCommand.Execute();
 
             // Disable the meteor's renderer and collider
@@ -51,14 +52,30 @@ public class MeteorCollision : MonoBehaviour
             GetComponent<Collider2D>().enabled = false;
             // Wait for 3.25 seconds and then destroy the meteor
             Destroy(gameObject, 3.25f);
-        
+
             Destroy(newExplosion, 0.8f);
-            if (gameSession != null){
+            if (gameSession != null)
+            {
                 gameSession.IncrementMeteorsDestroyed();
             }
-            if (scoreCount != null){
+            if (scoreCount != null)
+            {
                 scoreCount.IncrementScore(10);
                 gameSession.IncrementScore(10);
+            }
+
+            // Update the progress of the Meteor Destruction achievements
+            string[] achievementIds = { "meteorNovice", "meteorExpert", "meteorMaster" };
+            foreach (string achievementId in achievementIds)
+            {
+                Achievement achievement = achievementManager.GetAchievement(achievementId);
+
+                // Check if the achievement is not unlocked
+                if (!achievement.unlocked)
+                {
+                    achievementManager.IncrementProgress(achievementId);
+                    achievementManager.UpdateAchievementProgress(achievementId, achievement.progress);
+                }
             }
         }
 

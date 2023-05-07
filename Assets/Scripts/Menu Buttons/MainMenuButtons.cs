@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private Color originalColor;
-
+    private TransitionEffect transitionEffect;
 
     [Header("Button Hover Text:")] 
     [SerializeField] private TMPro.TextMeshProUGUI originalText;
@@ -16,6 +16,7 @@ public class MainMenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private void Start()
     {
         originalColor = originalText.color;
+        transitionEffect  = FindObjectOfType<TransitionEffect>();
     }
 
 
@@ -30,20 +31,20 @@ public class MainMenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void Play() 
     {
-        SceneManager.LoadScene("SaveSlots");
+        transitionEffect.LoadScene("SaveSlots");
     }
     public void Replays() 
     {
-        SceneManager.LoadScene("GameReplay");
+        transitionEffect.LoadScene("GameReplay");
     }
     public void Leaderboards() 
     {
-        SceneManager.LoadScene("Leaderboards");
+        transitionEffect.LoadScene("Leaderboards");
     }
 
     public void Options() 
     {
-        SceneManager.LoadScene("Options");
+        transitionEffect.LoadScene("Options");
     }
 
     public void Quit() 

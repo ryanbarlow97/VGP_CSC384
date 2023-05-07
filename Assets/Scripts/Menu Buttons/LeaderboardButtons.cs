@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
 public class LeaderboardButtons  : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("Button Hover Text:")] 
     [SerializeField] private TMPro.TextMeshProUGUI originalText;
+    private TransitionEffect transitionEffect;
 
     private Color originalColor;
 
     private void Start()
     {
         originalColor = originalText.color;
+        transitionEffect = FindObjectOfType<TransitionEffect>();
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -26,6 +27,7 @@ public class LeaderboardButtons  : MonoBehaviour, IPointerEnterHandler, IPointer
 
     public void Back() 
     {
-        SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1;
+        transitionEffect.LoadScene("MainMenu");
     }
 }

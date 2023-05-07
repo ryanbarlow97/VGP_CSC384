@@ -22,6 +22,7 @@ public class LivesCounter : MonoBehaviour
     private int lives;
     private GameSession gameSession;
     private SaveData saveData;
+    private TransitionEffect transitionEffect;
 
     private void Start()
     {
@@ -31,6 +32,8 @@ public class LivesCounter : MonoBehaviour
         playGameOverSoundCommand = new PlaySoundCommand(this, gameOver);
 
         saveData = SaveManager.Load(saveSlotNumber);
+
+        transitionEffect = FindObjectOfType<TransitionEffect>();
 
         lives = saveData.playerHearts;
         
@@ -159,6 +162,6 @@ public class LivesCounter : MonoBehaviour
 
     private void GameOver()
     {
-        SceneManager.LoadScene("EndGame");
+        transitionEffect.LoadScene("EndGame");
     }
 }

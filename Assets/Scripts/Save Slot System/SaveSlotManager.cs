@@ -9,6 +9,7 @@ public class SaveSlotManager : MonoBehaviour
 {
     public UserDetailsInput nameInputManager;
     public GameObject saveSlotCanvas;
+    private TransitionEffect transitionEffect;
 
     public Button saveSlot1;
     public Button saveSlot2;
@@ -16,6 +17,8 @@ public class SaveSlotManager : MonoBehaviour
 
     private void Start()
     {
+        transitionEffect  = FindObjectOfType<TransitionEffect>();
+
         saveSlot1.onClick.AddListener(() => LoadOrCreateSave(1));
         saveSlot2.onClick.AddListener(() => LoadOrCreateSave(2));
         saveSlot3.onClick.AddListener(() => LoadOrCreateSave(3));
@@ -29,7 +32,7 @@ public class SaveSlotManager : MonoBehaviour
         {
             // Load the main game scene.
             // Pass the save slot number to the MainGameLoader script in the next scene
-            SceneManager.LoadScene("MainGame", LoadSceneMode.Single);
+            transitionEffect.LoadScene("MainGame");
             SceneManager.sceneLoaded += (loadedScene, mode) =>
             {
                 MainGameLoader mainGameLoader = FindObjectOfType<MainGameLoader>();

@@ -8,12 +8,14 @@ public class OptionsButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 {
     [Header("Button Hover Text:")] 
     [SerializeField] private TMPro.TextMeshProUGUI originalText;
+    private TransitionEffect transitionEffect;
 
     private Color originalColor;
 
     private void Start()
     {
         originalColor = originalText.color;
+        transitionEffect  = FindObjectOfType<TransitionEffect>();
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -26,7 +28,7 @@ public class OptionsButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void Back() 
     {
-        SceneManager.LoadScene("MainMenu");
+        transitionEffect.LoadScene("MainMenu");
     }
 
 }
