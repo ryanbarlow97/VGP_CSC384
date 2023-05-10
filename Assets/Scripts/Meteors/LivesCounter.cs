@@ -23,6 +23,7 @@ public class LivesCounter : MonoBehaviour
     private GameSession gameSession;
     private SaveData saveData;
     private TransitionEffect transitionEffect;
+    private WeaponSystem weaponSystem;
 
     private void Start()
     {
@@ -30,6 +31,7 @@ public class LivesCounter : MonoBehaviour
         saveSlotNumber = gameSession.SaveSlotNumber;
         playHeathLossSoundCommand = new PlaySoundCommand(this, healthLoss);
         playGameOverSoundCommand = new PlaySoundCommand(this, gameOver);
+        weaponSystem = playerShip.GetComponent<WeaponSystem>();
 
         saveData = SaveManager.Load(saveSlotNumber);
 
@@ -55,10 +57,11 @@ public class LivesCounter : MonoBehaviour
             playHeathLossSoundCommand.Execute();
             StartCoroutine(RespawnPlayer());
         }
-        else
+        else if (lives == 1)
         {
             lives--;
             UpdateLivesText();
+            weaponSystem.canShoot = false;
             playGameOverSoundCommand.Execute();
             GameOver();
         }
