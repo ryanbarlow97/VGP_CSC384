@@ -71,7 +71,7 @@ public class PowerUpManager : MonoBehaviour
         speedPowerUpImage.enabled = false;
         RemainingTinmeBar.enabled = false;
     }
-
+ 
 
     private void ActivateTripleFireRatePowerUp(object powerUpObject)
     {
