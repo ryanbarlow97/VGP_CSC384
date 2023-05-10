@@ -41,7 +41,7 @@ public static class SaveManager
     }
     public static void Delete(int slotNumber)
     {
-        string filePath = Application.persistentDataPath + "/save" + slotNumber + ".json";
+        string filePath = Application.persistentDataPath + $"/saveSlot{slotNumber}.dat";
         if (File.Exists(filePath))
         {
             File.Delete(filePath);
