@@ -76,6 +76,7 @@ public class MeteorCollision : MonoBehaviour
                 if (gameSession.ConsecutiveMeteorsDestroyed >= achievementData.goal)
                 {
                     AchievementEntry achievement = achievementManager.GetAchievement(achievementData.id);
+                    // Check if the achievement is not unlocked
                     if (!achievement.unlocked)
                     {
                         achievementManager.IncrementProgress(achievementData.id);
