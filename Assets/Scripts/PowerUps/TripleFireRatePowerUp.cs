@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TripleFireRatePowerUp : MonoBehaviour
 {
-    public float fireRateMultiplier = 3f;
+    public float fireRateMultiplier = 3;
     public float duration = 5f;
     private AchievementManager achievementManager;
     private GameSession gameSession;
