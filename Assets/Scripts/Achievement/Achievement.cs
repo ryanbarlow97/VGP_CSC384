@@ -34,7 +34,7 @@ public class Achievement
             return achievement;
         }
         Debug.Log("File does not exist: " + filename);
-        return new Achievement();
+        return null;
     }
 
 }
