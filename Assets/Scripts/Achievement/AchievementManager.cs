@@ -5,18 +5,44 @@ using System.Collections;
 
 public class AchievementManager : MonoBehaviour
 {
+    public static AchievementManager Instance { get; private set; }
     private string achievementsFilePath;
-    private Achievement achievementsData;
+    public Achievement achievementsData;
 
-    private void Start()
+    private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
         achievementsFilePath = Path.Combine(Application.persistentDataPath, "achievements.json");
         LoadAchievements();
+    }
+    public Achievement Load()
+    {
+        //find the file and check if it exists
+        if (File.Exists(achievementsFilePath))
+        {
+            string json = File.ReadAllText(achievementsFilePath);
+            achievementsData = JsonUtility.FromJson<Achievement>(json);
+            return achievementsData;
+        }
+        else
+        {
+            achievementsData = new Achievement();
+            return null;
+        }
     }
 
     public void LoadAchievements()
     {
-        achievementsData = Achievement.Load(achievementsFilePath);
+
+        achievementsData = Load();
         if (achievementsData == null)
         {
             achievementsData = new Achievement

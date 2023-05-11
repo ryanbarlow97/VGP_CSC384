@@ -12,16 +12,24 @@ public class AchievementDisplay : MonoBehaviour
 
     void Start()
     {
-        achievementsFilePath = Path.Combine(Application.persistentDataPath, "achievements.json");
-        achievement = Achievement.Load(achievementsFilePath);
+        AchievementManager.Instance.LoadAchievements();
+        achievement = AchievementManager.Instance.achievementsData;
 
-        
-
-        foreach (AchievementEntry achievement in achievement.achievements)
+        if (achievement != null)
         {
-            CreateAchievementEntry(achievement);
+            foreach (AchievementEntry entry in achievement.achievements)
+            {
+                CreateAchievementEntry(entry);
+            }
+        }
+        else
+        {
+            Debug.Log("Achievement data not loaded");
         }
     }
+
+
+
     void CreateAchievementEntry(AchievementEntry achievement)
     {
         GameObject achievementEntry = (GameObject)Instantiate(achievementEntryPrefab);

@@ -24,19 +24,6 @@ public class Achievement
     {
         achievements = new List<AchievementEntry>();
     }
-
-    public static Achievement Load(string filename)
-    {
-        if (File.Exists(filename))
-        {
-            string json = File.ReadAllText(filename);
-            Achievement achievement = JsonUtility.FromJson<Achievement>(json);
-            return achievement;
-        }
-        Debug.Log("File does not exist: " + filename);
-        return null;
-    }
-
 }
 
 
